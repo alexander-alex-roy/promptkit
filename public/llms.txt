@@ -1,0 +1,67 @@
+# PromptKit
+> Expert-crafted system prompts for 200+ AI models. Copy, paste, and get optimized outputs for ChatGPT, Claude, Gemini, Midjourney, and more. System prompts are derived from official documentation, whitepapers, and model cards.
+
+## Text & Chat Models
+- [OpenAI (GPT-5.5, GPT-5, GPT-4o, o-series)](https://promptkit.dev): System prompts for reasoning, structured outputs, code, tool use
+- [Anthropic (Claude Opus 4, Sonnet 4, Haiku 4)](https://promptkit.dev): XML system messages, thinking mode, citations
+- [Google (Gemini 3.5, 2.5 Pro, Gemma 4)](https://promptkit.dev): System instructions, Google Search grounding, thinking config
+- [DeepSeek (R1, V4)](https://promptkit.dev): Reasoning mode, temperature ranges, tool use
+- [Alibaba (Qwen3.7, QwQ, Qwen Max)](https://promptkit.dev): Chat template format, tool descriptions
+- [Meta (Llama 4, 3)](https://promptkit.dev): System prompt structure, tool use format
+- [Mistral AI (Mistral Large, Small)](https://promptkit.dev): System message guidelines, JSON mode
+- [Zhipu AI (GLM-5, GLM-4)](https://promptkit.dev): Chinese-optimized prompt formats
+- [ByteDance (Doubao, Seedream)](https://promptkit.dev): Seedream 4.0 image model, Doubao series
+- [xAI (Grok)](https://promptkit.dev): Grok 3, Grok Imagine
+- [Tencent (Hunyuan)](https://promptkit.dev): Hunyuan series prompts
+- [Moonshot AI (Kimi K2)](https://promptkit.dev): Kimi K2 reasoning, K2.5 thinking mode
+- [MiniMax (M3, MiniMax-Text)](https://promptkit.dev): MiniMax Text-01 and M3 image prompts
+- [Cohere (Command A)](https://promptkit.dev): Command A7, Command R+
+- [01.AI (Yi Series)](https://promptkit.dev): Yi-Lightning, Yi-Large prompts
+- [Xiaomi (MiLM2)](https://promptkit.dev): MiLM2 series system prompts
+- [Inception Labs (Mercury)](https://promptkit.dev): Mercury Coder diffusion LLM prompts
+
+## Image Generation
+- [Midjourney V7](https://promptkit.dev): Parameters (--v, --s, --p, --ar), raw mode, personalization
+- [Black Forest Labs (Flux 2, Flux Pro, Flux Dev)](https://promptkit.dev): Guidance, aspect ratio, LoRA, Kontext editing
+- [Stability AI (SDXL, SD 3.5, SD 2.1)](https://promptkit.dev): Community quality tags, negative prompts, CFG scale
+- [OpenAI (GPT Image 2, DALL-E 3, 1.5, 1 Mini)](https://promptkit.dev): Multi-turn editing, style presets, quality/size params
+- [Ideogram V3, V4](https://promptkit.dev): Text rendering, magic prompt
+- [Recraft V3](https://promptkit.dev): Style control, brand colors, vector/SVG output
+- [Adobe Firefly 3](https://promptkit.dev): Commercial safety, Firefly Image 3
+- [Kuaishou (Kling Image)](https://promptkit.dev): Text-to-image, image-to-image
+- [Google (Imagen 3)](https://promptkit.dev): Imagen 3 system prompts
+- [Reve AI](https://promptkit.dev): Reve Image 1.0, review scoring
+
+## Video Generation
+- [OpenAI Sora 2](https://promptkit.dev): Text generation, camera motion, video-to-video
+- [Kuaishou Kling 3](https://promptkit.dev): Text-to-video, image-to-video, motion dynamics
+- [Runway Gen 4, Gen 3](https://promptkit.dev): Gen-4 ultra-realistic, Gen-3 Alpha
+- [Pika 3.0, 2.0](https://promptkit.dev): Scene ingredients, Pikaffects
+- [Luma AI Ray 2](https://promptkit.dev): Ray 2 text-to-video, image-to-video
+- [Genmo Mochi 2](https://promptkit.dev): Mochi 2 video generation
+- [Lightricks LTX Studio](https://promptkit.dev): LTX Video, LTX Studio long-form
+- [Tencent HunyuanVideo](https://promptkit.dev): HunyuanVideo text-to-video
+- [Shengshu AI Vidu](https://promptkit.dev): Vidu 2.0 text-to-video
+
+## Vision & Multimodal
+- [OpenAI GPT-5 Vision](https://promptkit.dev): Image analysis, structured outputs from visuals
+- [Anthropic Claude Vision](https://promptkit.dev): Image understanding, PDF analysis
+- [Google Gemini Vision](https://promptkit.dev): Video analysis, image understanding
+- [Alibaba Qwen-VL](https://promptkit.dev): Qwen Vision-Language prompts
+
+## 3D Generation
+- [Tripo 3D](https://promptkit.dev): Text-to-3D, image-to-3D
+- [Meshy 3D](https://promptkit.dev): Text-to-3D, image-to-3D, PBR textures
+- [Stability AI (SV3D, Stable Zero123)](https://promptkit.dev): 3D object generation
+- [TencentARC LRM](https://promptkit.dev): Large reconstruction model prompts
+
+## Open-Weight Models
+- [PixArt-Alpha](https://promptkit.dev): Text-to-image transformer model
+- [OpenGVLab (MARS)](https://promptkit.dev): MARS text-to-video
+- [CagliostroLab (Cagliostro)](https://promptkit.dev): Cagliostro by Maga_AI
+- [HVision-NKU (CogView)](https://promptkit.dev): CogView-4 text-to-image
+- [StepFun (Step-2)](https://promptkit.dev): Step-2 series prompts
+
+## Research
+- [Community Models](https://promptkit.dev): Community-sourced prompts
+- [Research Section](https://promptkit.dev): Experimental and research models
