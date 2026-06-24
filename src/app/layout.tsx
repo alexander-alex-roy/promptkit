@@ -52,7 +52,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "PromptKit" }],
   icons: {
-    icon: "/logo.svg",
+    icon: "/logo.png",
   },
   openGraph: {
     title: "PromptKit — System Prompt Library for 200+ AI Models",
