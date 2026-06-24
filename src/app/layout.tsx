@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "PromptKit",
     locale: "en_US",
-    url: "https://promptkit.dev",
+    url: "https://promptkit.qzz.io",
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "PromptKit — System Prompt Library for 200+ AI Models" }],
   },
   twitter: {
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://promptkit.dev",
+    canonical: "https://promptkit.qzz.io",
   },
 };
 
@@ -100,7 +100,7 @@ export default function RootLayout({
                   description: "System prompt library for AI models based on official documentation",
                   applicationCategory: "DeveloperApplication",
                   operatingSystem: "Web",
-                  url: "https://promptkit.dev",
+                  url: "https://promptkit.qzz.io",
                   offers: {
                     "@type": "Offer",
                     price: "0",
@@ -118,13 +118,13 @@ export default function RootLayout({
                 {
                   "@type": "WebSite",
                   name: "PromptKit",
-                  url: "https://promptkit.dev",
+                  url: "https://promptkit.qzz.io",
                   description: "System prompt library for 200+ AI models based on official documentation",
                   potentialAction: {
                     "@type": "SearchAction",
                     target: {
                       "@type": "EntryPoint",
-                      urlTemplate: "https://promptkit.dev/?q={search_term_string}",
+                      urlTemplate: "https://promptkit.qzz.io/?q={search_term_string}",
                     },
                     "query-input": "required name=search_term_string",
                   },

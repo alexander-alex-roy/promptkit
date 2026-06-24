@@ -24,7 +24,7 @@ A library of ready-to-use system prompts. Pick your model, copy the prompt, past
 
 ## How to use
 
-1. **Browse** the list at [promptkit.dev](https://promptkit.dev)
+1. **Browse** the list at [promptkit.qzz.io](https://promptkit.qzz.io)
 2. **Copy** your model's system prompt
 3. **Paste** it into ChatGPT, Claude, Gemini, or any chatbot
 4. **Ask** it to generate a prompt — it will follow the rules defined by that model's creators

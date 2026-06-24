@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://promptkit.dev/sitemap.xml
+Sitemap: https://promptkit.qzz.io/sitemap.xml
