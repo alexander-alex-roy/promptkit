@@ -251,9 +251,7 @@ function Header() {
             className="flex items-center gap-2.5 hover:opacity-80 transition-opacity"
             aria-label="Go to home page"
           >
-            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 overflow-hidden">
-              <img src="/favicon-32x32.png" alt="PromptKit" className="w-5 h-5 object-contain" />
-            </div>
+            <img src="/icon.svg" alt="PromptKit" className="w-8 h-8" />
             <div className="text-left">
               <h1 className="text-lg font-bold tracking-tight leading-none">
                 Prompt<span className="text-amber-500">Kit</span>
