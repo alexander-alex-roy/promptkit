@@ -252,7 +252,7 @@ function Header() {
             aria-label="Go to home page"
           >
             <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 overflow-hidden">
-              <img src="/favicon-32x32.png" alt="PromptKit" className="w-full h-full" />
+              <img src="/favicon-32x32.png" alt="PromptKit" className="w-5 h-5 object-contain" />
             </div>
             <div className="text-left">
               <h1 className="text-lg font-bold tracking-tight leading-none">
