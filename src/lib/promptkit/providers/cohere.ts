@@ -118,6 +118,5 @@ Generate the best Command A prompt for the user's goal.`,
   ],
   lastVerified: '2025-06',
   version: 'command-a',
-}
-
+},
 ];
