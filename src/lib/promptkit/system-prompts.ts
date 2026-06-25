@@ -100,60 +100,74 @@ export function getSourceQuality(entry: SystemPromptEntry): 'verified' | 'partia
   return 'limited';
 }
 
+// Pre-computed lowercase fields — avoids 1900+ toLowerCase() calls per keystroke.
+const LOWER_ENTRIES: Array<{
+  name: string; provider: string; desc: string; cat: string; eco: string;
+  tipsLC: string[]; sourceTitlesLC: string[]; shortVer: string; systemPrompt: string;
+}> = ALL_ENTRIES.map(e => ({
+  name: e.modelName.toLowerCase(),
+  provider: e.provider.toLowerCase(),
+  desc: e.description.toLowerCase(),
+  cat: e.category.toLowerCase(),
+  eco: e.ecosystem.toLowerCase(),
+  tipsLC: e.tips.map(t => t.toLowerCase()),
+  sourceTitlesLC: e.sources.map(s => s.title.toLowerCase()),
+  shortVer: e.shortVersion.toLowerCase(),
+  systemPrompt: e.systemPrompt.toLowerCase(),
+}));
+
 export function searchEntries(query: string): SystemPromptEntry[] {
   if (!query.trim()) return [];
   const q = query.toLowerCase().trim();
   const qWords = q.split(/\s+/).filter(Boolean);
+  // Limit early bail — if we already have this many exact matches, skip fuzzy
+  const ENOUGH_EXACT = 20;
+
   const scored: Array<{ entry: SystemPromptEntry; score: number }> = [];
 
-  for (const entry of ALL_ENTRIES) {
+  for (let i = 0; i < ALL_ENTRIES.length; i++) {
+    const entry = ALL_ENTRIES[i];
+    const lo = LOWER_ENTRIES[i];
     let score = 0;
-    const name = entry.modelName.toLowerCase();
-    const provider = entry.provider.toLowerCase();
-    const desc = entry.description.toLowerCase();
-    const cat = entry.category.toLowerCase();
-    const eco = entry.ecosystem.toLowerCase();
 
-    // ── Exact/string matching (same as before) ──
-    if (name === q) score += 100;
-    else if (name.startsWith(q)) score += 50;
-    else if (qWords.every(w => name.includes(w))) score += 30;
-    else if (name.includes(q)) score += 20;
+    if (lo.name === q) score += 100;
+    else if (lo.name.startsWith(q)) score += 50;
+    else if (qWords.every(w => lo.name.includes(w))) score += 30;
+    else if (lo.name.includes(q)) score += 20;
 
-    if (provider.includes(q)) score += 8;
+    if (lo.provider.includes(q)) score += 8;
 
-    if (cat === q) score += 15;
-    else if (cat.includes(q)) score += 5;
+    if (lo.cat === q) score += 15;
+    else if (lo.cat.includes(q)) score += 5;
 
-    if (eco === q) score += 10;
-    else if (eco.includes(q)) score += 4;
+    if (lo.eco === q) score += 10;
+    else if (lo.eco.includes(q)) score += 4;
 
-    if (desc.includes(q)) score += 6;
-    else if (qWords.some(w => desc.includes(w))) score += 2;
+    if (lo.desc.includes(q)) score += 6;
+    else if (qWords.some(w => lo.desc.includes(w))) score += 2;
 
     if (qWords.length > 1) {
-      const allText = `${name} ${provider} ${desc} ${cat} ${eco}`;
+      const allText = `${lo.name} ${lo.provider} ${lo.desc} ${lo.cat} ${lo.eco}`;
       if (qWords.every(w => allText.includes(w))) score += 5;
     }
 
-    if (entry.tips.some(t => t.toLowerCase().includes(q))) score += 3;
-    else if (entry.tips.some(t => qWords.some(w => t.toLowerCase().includes(w)))) score += 1;
+    if (lo.tipsLC.some(t => t.includes(q))) score += 3;
+    else if (lo.tipsLC.some(t => qWords.some(w => t.includes(w)))) score += 1;
 
-    if (entry.sources.some(s => s.title.toLowerCase().includes(q))) score += 3;
-    else if (entry.sources.some(s => qWords.some(w => s.title.toLowerCase().includes(w)))) score += 1;
+    if (lo.sourceTitlesLC.some(s => s.includes(q))) score += 3;
+    else if (lo.sourceTitlesLC.some(s => qWords.some(w => s.includes(w)))) score += 1;
 
-    if (entry.shortVersion.toLowerCase().includes(q)) score += 2;
-    if (entry.systemPrompt.toLowerCase().includes(q)) score += 1;
+    if (lo.shortVer.includes(q)) score += 2;
+    if (lo.systemPrompt.includes(q)) score += 1;
 
-    // ── Fuzzy fallback: catch typos / near-misses ──
-    if (q.length >= 3 && score < 15) {
+    if (q.length >= 3 && score < 15 && scored.length < ENOUGH_EXACT) {
       for (const w of qWords) {
-        const nameSim = fuzzyWordSim(w, name);
+        const nameSim = fuzzyWordSim(w, lo.name);
         if (nameSim > 0.5) { score += Math.round(nameSim * 25); break; }
       }
       if (score < 10) {
         for (const w of qWords) {
-          const provSim = fuzzyWordSim(w, provider);
+          const provSim = fuzzyWordSim(w, lo.provider);
           if (provSim > 0.5) { score += Math.round(provSim * 8); break; }
         }
       }

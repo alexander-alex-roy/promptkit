@@ -352,22 +352,22 @@ function BrowseView() {
     return sortEntries(result, sortBy, sortOrder);
   }, [debouncedSearch, categoryFilter, ecosystemFilter, providerFilter, sourceQualityFilter, sortBy, sortOrder]);
 
-  // Active filter badges
+  // Active filter tags — labels kept short for mobile
   const activeFilters: Array<{ key: string; label: string; onClear: () => void }> = [];
   if (categoryFilter !== 'all') {
     const catLabel = CATEGORY_CONFIG[categoryFilter as ModelCategory]?.label ?? categoryFilter;
-    activeFilters.push({ key: 'cat', label: `Category: ${catLabel}`, onClear: () => setCategoryFilter('all') });
+    activeFilters.push({ key: 'cat', label: catLabel, onClear: () => setCategoryFilter('all') });
   }
   if (ecosystemFilter !== 'all') {
     const ecoLabel = ECOSYSTEMS.find(e => e.value === ecosystemFilter)?.label ?? ecosystemFilter;
-    activeFilters.push({ key: 'eco', label: `Ecosystem: ${ecoLabel}`, onClear: () => setEcosystemFilter('all') });
+    activeFilters.push({ key: 'eco', label: ecoLabel, onClear: () => setEcosystemFilter('all') });
   }
   if (providerFilter !== 'all') {
-    activeFilters.push({ key: 'prov', label: `Provider: ${providerFilter}`, onClear: () => setProviderFilter('all') });
+    activeFilters.push({ key: 'prov', label: providerFilter, onClear: () => setProviderFilter('all') });
   }
   if (sourceQualityFilter !== 'all') {
     const qualLabel = sourceQualityFilter.charAt(0).toUpperCase() + sourceQualityFilter.slice(1);
-    activeFilters.push({ key: 'qual', label: `Quality: ${qualLabel}`, onClear: () => setSourceQualityFilter('all') });
+    activeFilters.push({ key: 'qual', label: qualLabel, onClear: () => setSourceQualityFilter('all') });
   }
 
   const hasActiveFilters = activeFilters.length > 0;
@@ -394,12 +394,12 @@ function BrowseView() {
 
       {/* Filters */}
       <section className="space-y-3" aria-label="Filter models">
-        {/* Category buttons */}
-        <div className="flex flex-wrap gap-1.5" role="group" aria-label="Category filter">
+        {/* Category buttons — scrollable on mobile to save vertical space */}
+        <div className="flex gap-1.5 overflow-x-auto [-webkit-overflow-scrolling:touch] snap-x snap-mandatory" role="group" aria-label="Category filter">
           <button
             onClick={() => setCategoryFilter('all')}
             className={cn(
-              'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
+              'snap-start flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
               categoryFilter === 'all'
                 ? 'border-amber-500/50 bg-amber-500/10 text-amber-500'
                 : 'border-border hover:border-amber-500/30 text-muted-foreground'
@@ -422,7 +422,7 @@ function BrowseView() {
                 key={cat}
                 onClick={() => setCategoryFilter(cat)}
                 className={cn(
-                  'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
+                  'snap-start flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all border',
                   categoryFilter === cat
                     ? 'border-amber-500/50 bg-amber-500/10 text-amber-500'
                     : 'border-border hover:border-amber-500/30 text-muted-foreground'
@@ -514,11 +514,15 @@ function BrowseView() {
         </div>
       </section>
 
-      {/* Active filter badges */}
+      {/* Active filter tags */}
       {hasActiveFilters && (
-        <div className="flex flex-wrap items-center gap-1.5">
+        <div className="flex items-center gap-1.5 overflow-x-auto [-webkit-overflow-scrolling:touch]">
           {activeFilters.map(f => (
-            <Badge key={f.key} variant="secondary" className="gap-1 text-xs py-1">
+            <Badge
+              key={f.key}
+              variant="secondary"
+              className="gap-1 text-[10px] py-0.5 px-1.5 whitespace-nowrap shrink-0"
+            >
               {f.label}
               <button onClick={f.onClear} className="hover:text-destructive ml-0.5" aria-label={`Clear ${f.label}`}>
                 <X className="h-3 w-3" />
@@ -527,7 +531,7 @@ function BrowseView() {
           ))}
           <button
             onClick={() => { setCategoryFilter('all'); setEcosystemFilter('all'); setProviderFilter('all'); setSourceQualityFilter('all'); }}
-            className="text-xs text-muted-foreground hover:text-foreground ml-1 underline underline-offset-2"
+            className="text-[10px] text-muted-foreground hover:text-foreground underline underline-offset-2 whitespace-nowrap shrink-0"
           >
             Clear all
           </button>
@@ -1215,8 +1219,30 @@ function BookmarksView() {
 function SearchDialog() {
   const { searchOpen, setSearchOpen, setSelectedEntryId, setCategoryFilter, setActiveView } = useAppStore();
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const results = useMemo(() => query ? searchEntries(query) : [], [query]);
+  // Debounce: update query state 150ms after user stops typing
+  const handleQueryChange = useCallback((val: string) => {
+    setQuery(val);
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => setDebouncedQuery(val), 150);
+  }, []);
+
+  // Cleanup debounce timer on unmount
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, []);
+
+  const clearQuery = useCallback(() => {
+    setQuery('');
+    setDebouncedQuery('');
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+  }, []);
+
+  const results = useMemo(() => debouncedQuery ? searchEntries(debouncedQuery) : [], [debouncedQuery]);
 
   return (
     <Dialog open={searchOpen} onOpenChange={setSearchOpen}>
@@ -1228,7 +1254,7 @@ function SearchDialog() {
           <CommandInput
             placeholder="Search models, providers, categories..."
             value={query}
-            onValueChange={setQuery}
+            onValueChange={handleQueryChange}
           />
           <CommandList>
             <CommandEmpty>No results found.</CommandEmpty>
@@ -1241,7 +1267,7 @@ function SearchDialog() {
                     onSelect={() => {
                       setSelectedEntryId(e.id);
                       setSearchOpen(false);
-                      setQuery('');
+                      clearQuery();
                     }}
                   >
                     <Badge variant="outline" className="text-[9px] mr-2 shrink-0">{e.category}</Badge>
@@ -1255,7 +1281,7 @@ function SearchDialog() {
                     value="__view_all__"
                     onSelect={() => {
                       setSearchOpen(false);
-                      setQuery('');
+                      clearQuery();
                       setCategoryFilter('all');
                       setActiveView('browse');
                     }}
