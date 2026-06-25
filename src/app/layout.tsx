@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://promptkit.qzz.io"),
   title: "PromptKit — System Prompt Library for 200+ AI Models",
   description:
     "Expert-crafted system prompts for 200+ AI models. Copy, paste, and get optimized prompts for ChatGPT, Claude, Gemini, Midjourney, and more. Based on official documentation.",
