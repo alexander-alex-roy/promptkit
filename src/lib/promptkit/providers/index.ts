@@ -21,7 +21,6 @@ import { COHERE } from './cohere';
 import { META } from './meta';
 import { MOONSHOT_AI } from './moonshot-ai';
 import { XIAOMI } from './xiaomi';
-import { MISTRAL } from './mistral';
 import { MIDJOURNEY } from './midjourney';
 import { IDEOGRAM } from './ideogram';
 import { SOURCEFUL } from './sourceful';
@@ -72,7 +71,6 @@ export const ALL_PROVIDER_ENTRIES: SystemPromptEntry[] = [
   ...META,
   ...MOONSHOT_AI,
   ...XIAOMI,
-  ...MISTRAL,
   ...MIDJOURNEY,
   ...IDEOGRAM,
   ...SOURCEFUL,
