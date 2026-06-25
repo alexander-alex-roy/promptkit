@@ -60,7 +60,7 @@ import {
   ShieldCheck, ShieldAlert, ShieldQuestion, Keyboard,
   MessageSquare, ChevronDown, Music, PenTool, Link, Globe2,
 } from 'lucide-react';
-import { getArenaRanking, getVideoArenaRanking } from '@/lib/promptkit/arena-ranks';
+import { getArenaRanking, getVideoArenaRanking, getTextArenaRanking, getImageToVideoArenaRanking } from '@/lib/promptkit/arena-ranks';
 import type { ArenaRanking } from '@/lib/promptkit/arena-ranks';
 import { cn } from '@/lib/utils';
 
@@ -717,6 +717,57 @@ function OpenInDropdown({ entry }: { entry: SystemPromptEntry }) {
 }
 
 
+function ArenaRankCard({ ranking, label }: { ranking: ArenaRanking; label: string }) {
+  return (
+    <Card className="border-purple-500/20 bg-purple-500/5">
+      <CardContent className="pt-4">
+        <div className="flex items-start gap-3">
+          <Trophy className="h-5 w-5 text-purple-500 shrink-0 mt-0.5" />
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+              <h3 className="text-sm font-semibold">{label} Arena Ranking</h3>
+              {ranking.preliminary && (
+                <Badge variant="outline" className="text-[9px] px-1 py-0 text-amber-500 border-amber-500/30">
+                  Preliminary
+                </Badge>
+              )}
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Rank</p>
+                <p className="text-lg font-bold text-purple-400">
+                  #{ranking.rank}
+                  {ranking.rankSpread !== `${ranking.rank} ${ranking.rank}` && (
+                    <span className="text-xs font-normal text-muted-foreground ml-1">
+                      (range {ranking.rankSpread})
+                    </span>
+                  )}
+                </p>
+              </div>
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Elo Score</p>
+                <p className="text-lg font-bold">{ranking.score} <span className="text-xs text-muted-foreground font-normal">±{ranking.ci}</span></p>
+              </div>
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Votes</p>
+                <p className="text-lg font-bold">{ranking.votes.toLocaleString()}</p>
+              </div>
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Provider</p>
+                <p className="text-sm font-medium truncate">{ranking.organization}</p>
+              </div>
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-2">
+              Based on {ranking.votes.toLocaleString()} blind user votes &bull; 95% CI: ±{ranking.ci} &bull; License: {ranking.license}
+            </p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+
 function DetailView() {
   const { selectedEntryId, setSelectedEntryId, showShortVersion, setShowShortVersion, isBookmarked, addBookmark, removeBookmark, compareIds, addCompare } = useAppStore();
   const entry = selectedEntryId ? getEntryById(selectedEntryId) : null;
@@ -734,7 +785,17 @@ function DetailView() {
   const catConfig = CATEGORY_CONFIG[entry.category];
   const quality = getEntryQuality(entry);
   const isVideo = entry.category === 'video';
-  const arenaRanking = isVideo ? getVideoArenaRanking(entry.modelName) : getArenaRanking(entry.modelName);
+  const isImage = entry.category === 'image' || entry.category === 'design';
+  const isText = entry.category === 'text';
+  const t2vRanking = isVideo ? getVideoArenaRanking(entry.modelName) : null;
+  const i2vRanking = isVideo ? getImageToVideoArenaRanking(entry.modelName) : null;
+  const arenaRanking = isVideo
+    ? null
+    : isImage
+    ? getArenaRanking(entry.modelName)
+    : isText
+    ? getTextArenaRanking(entry.modelName)
+    : null;
 
   return (
     <div className="space-y-5" ref={contentRef}>
@@ -842,53 +903,15 @@ function DetailView() {
         </CardContent>
       </Card>
 
-      {/* Arena Ranking */}
-      {arenaRanking && (
-        <Card className="border-purple-500/20 bg-purple-500/5">
-          <CardContent className="pt-4">
-            <div className="flex items-start gap-3">
-              <Trophy className="h-5 w-5 text-purple-500 shrink-0 mt-0.5" />
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                  <h3 className="text-sm font-semibold">{isVideo ? 'Text-to-Video' : 'Text-to-Image'} Arena Ranking</h3>
-                  {arenaRanking.preliminary && (
-                    <Badge variant="outline" className="text-[9px] px-1 py-0 text-amber-500 border-amber-500/30">
-                      Preliminary
-                    </Badge>
-                  )}
-                </div>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  <div>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Rank</p>
-                    <p className="text-lg font-bold text-purple-400">
-                      #{arenaRanking.rank}
-                      {arenaRanking.rankSpread !== `${arenaRanking.rank} ${arenaRanking.rank}` && (
-                        <span className="text-xs font-normal text-muted-foreground ml-1">
-                          (range {arenaRanking.rankSpread})
-                        </span>
-                      )}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Elo Score</p>
-                    <p className="text-lg font-bold">{arenaRanking.score} <span className="text-xs text-muted-foreground font-normal">±{arenaRanking.ci}</span></p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Votes</p>
-                    <p className="text-lg font-bold">{arenaRanking.votes.toLocaleString()}</p>
-                  </div>
-                  <div>
-                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Provider</p>
-                    <p className="text-sm font-medium truncate">{arenaRanking.organization}</p>
-                  </div>
-                </div>
-                <p className="text-[10px] text-muted-foreground mt-2">
-                  Based on {arenaRanking.votes.toLocaleString()} blind user votes &bull; 95% CI: ±{arenaRanking.ci} &bull; License: {arenaRanking.license}
-                </p>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+      {/* Arena Rankings */}
+      {isVideo && t2vRanking && (
+        <ArenaRankCard ranking={t2vRanking} label="Text-to-Video" />
+      )}
+      {isVideo && i2vRanking && (
+        <ArenaRankCard ranking={i2vRanking} label="Image-to-Video" />
+      )}
+      {!isVideo && arenaRanking && (
+        <ArenaRankCard ranking={arenaRanking} label={isImage ? 'Text-to-Image' : 'Chatbot'} />
       )}
 
       {/* Version Toggle + Copy */}
