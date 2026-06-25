@@ -52,7 +52,7 @@ import {
 } from '@/components/ui/select';
 import { toast } from 'sonner';
 import {
-  Zap, Copy, Check, Search, Sun, Moon, ChevronRight,
+  Zap, Copy, Check, Search, Sun, Moon, ChevronRight, Trophy,
   Bookmark, BookmarkCheck, ArrowLeft, ExternalLink,
   FileText, BookOpen, Github, Globe, AlertCircle,
   Layers, GitCompare, X, Sparkles, Shield,
@@ -60,6 +60,8 @@ import {
   ShieldCheck, ShieldAlert, ShieldQuestion, Keyboard,
   MessageSquare, ChevronDown, Music, PenTool, Link, Globe2,
 } from 'lucide-react';
+import { getArenaRanking } from '@/lib/promptkit/arena-ranks';
+import type { ArenaRanking } from '@/lib/promptkit/arena-ranks';
 import { cn } from '@/lib/utils';
 
 
@@ -731,6 +733,7 @@ function DetailView() {
   const promptText = showShortVersion ? entry.shortVersion : entry.systemPrompt;
   const catConfig = CATEGORY_CONFIG[entry.category];
   const quality = getEntryQuality(entry);
+  const arenaRanking = getArenaRanking(entry.modelName);
 
   return (
     <div className="space-y-5" ref={contentRef}>
@@ -837,6 +840,55 @@ function DetailView() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Arena Ranking */}
+      {arenaRanking && (
+        <Card className="border-purple-500/20 bg-purple-500/5">
+          <CardContent className="pt-4">
+            <div className="flex items-start gap-3">
+              <Trophy className="h-5 w-5 text-purple-500 shrink-0 mt-0.5" />
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                  <h3 className="text-sm font-semibold">Text-to-Image Arena Ranking</h3>
+                  {arenaRanking.preliminary && (
+                    <Badge variant="outline" className="text-[9px] px-1 py-0 text-amber-500 border-amber-500/30">
+                      Preliminary
+                    </Badge>
+                  )}
+                </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Rank</p>
+                    <p className="text-lg font-bold text-purple-400">
+                      #{arenaRanking.rank}
+                      {arenaRanking.rankSpread !== `${arenaRanking.rank} ${arenaRanking.rank}` && (
+                        <span className="text-xs font-normal text-muted-foreground ml-1">
+                          (range {arenaRanking.rankSpread})
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Elo Score</p>
+                    <p className="text-lg font-bold">{arenaRanking.score} <span className="text-xs text-muted-foreground font-normal">±{arenaRanking.ci}</span></p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Votes</p>
+                    <p className="text-lg font-bold">{arenaRanking.votes.toLocaleString()}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] text-muted-foreground uppercase tracking-wider">Provider</p>
+                    <p className="text-sm font-medium truncate">{arenaRanking.organization}</p>
+                  </div>
+                </div>
+                <p className="text-[10px] text-muted-foreground mt-2">
+                  Based on {arenaRanking.votes.toLocaleString()} blind user votes &bull; 95% CI: ±{arenaRanking.ci} &bull; License: {arenaRanking.license}
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Version Toggle + Copy */}
       <div className="flex items-center justify-between">
