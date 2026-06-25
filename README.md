@@ -1,50 +1,97 @@
-# PromptKit 🪄
+<p align="center">
+  <img src="https://promptkit.qzz.io/icon.svg" alt="PromptKit" width="80" height="80">
+</p>
 
-**Expert-crafted system prompts for 200+ AI models.**
+<h1 align="center">PromptKit</h1>
 
-Stop guessing how to prompt. Every system prompt here is derived from official documentation, model cards, and whitepapers — so you always get the model's best behavior.
+<p align="center">
+  <strong>Expert-crafted system prompts for 200+ AI models.</strong>
+  <br>
+  Based on official docs, model cards, and whitepapers — never guess how to prompt again.
+</p>
 
-## What is this?
+<p align="center">
+  <a href="https://promptkit.qzz.io">promptkit.qzz.io</a>
+</p>
 
-A library of ready-to-use system prompts. Pick your model, copy the prompt, paste it into your chatbot. That's it.
+<p align="center">
+  <img src="https://img.shields.io/badge/models-202-blue" alt="200+ Models">
+  <img src="https://img.shields.io/badge/providers-50%2B-amber" alt="50+ Providers">
+  <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
+</p>
 
-| Model | What it covers |
-|---|---|
-| **GPT-5.5 / GPT-5 / GPT-4o** | OpenAI's full lineup — image gen, vision, structured outputs |
-| **Claude Opus 4 / Sonnet 4** | System messages with XML tags, thinking mode, citations |
-| **Gemini 3.5 / 2.5 Pro** | System instructions, Google Search grounding, thinking config |
-| **Midjourney V7** | Parameters (`--v 7`, `--s 1000`, `--p`), personalization, raw mode |
-| **Flux 2 / Flux Pro** | Dev/Pro split, guidance, aspect ratio, Lora support |
-| **Kling 3** | Text-to-video, image-to-video, motion dynamics |
-| **Sora 2** | Video generation, text rendering, camera motion |
-| **DeepSeek R1 / V4** | Reasoning mode, temperature ranges, tool use |
-| **Stable Diffusion XL / 3.5** | SDXL negative prompts, community quality tags, CFG |
-| **GLM-5 / Qwen3.7 / Yi-Lightning** | Chinese ecosystem models with native prompt formats |
-| **and 185+ more** | Pika, Runway, Luma, Ideogram, Recraft, MiniMax, Xiaomi, Cohere, Adobe Firefly, Grok, Mistral, Alibaba, Tencent, and open-weight models |
+---
 
-## How to use
+## Quick Start
 
-1. **Browse** the list at [promptkit.qzz.io](https://promptkit.qzz.io)
-2. **Copy** your model's system prompt
-3. **Paste** it into ChatGPT, Claude, Gemini, or any chatbot
-4. **Ask** it to generate a prompt — it will follow the rules defined by that model's creators
+```bash
+# 1. Browse the library
+open https://promptkit.qzz.io
 
-## Why use it?
+# 2. Pick your model — search or filter by category/provider
+# 3. Copy the system prompt
+# 4. Paste into ChatGPT, Claude, Gemini — any chatbot
+# 5. Ask it to generate a prompt for your task
+```
 
-- **Based on official docs** — no guessing, no hallucinations
-- **Covers 50+ providers** — western, Chinese, and open-weight models
+That's it. No sign-up, no API key, no cost.
+
+---
+
+## Coverage
+
+| Category | Models | Providers |
+|----------|--------|-----------|
+| **Text** | 82 | OpenAI, Anthropic, Google, DeepSeek, Mistral, Cohere, xAI, Alibaba, Zhipu, ByteDance, Tencent, Moonshot, MiniMax, 01.AI, Xiaomi, Inception Labs, NVIDIA |
+| **Image** | 63 | Midjourney, Black Forest Labs, Stability AI, Adobe, Ideogram, Recraft, OpenAI, Google, Kuaishou, CagliostroLab, PixArt, CogView |
+| **Video** | 32 | Sora, Kling, Runway, Pika, Luma, Genmo, Lightricks, Hunyuan, Vidu, MARS, CogVideoX |
+| **Code** | 10 | Claude Sonnet (Code), GPT-5 (Code), GPT-5.4 Codex, DeepSeek Coder, Codestral, Devstral |
+| **Vision** | 6 | Claude Vision, GPT-4o Vision, Gemini Vision, Qwen-VL, GPT-5 Vision, Gemini 3 Vision |
+| **3D** | 5 | Tripo, Meshy, Stability AI (SV3D), TencentARC (InstantMesh) |
+| **Character** | 4 | Community roleplay models |
+
+**100+ additional models** across all categories — including open-weight (Llama, Gemma, Flux Dev, DeepSeek V4) and Chinese ecosystem (GLM-5, Qwen3.7, Doubao, Hunyuan, Kimi K2, Yi-Lightning, Step-2, MiLM2).
+
+---
+
+## Why PromptKit?
+
+- **Based on official documentation** — each prompt is derived from model cards, API references, whitepapers, and official guides. No guesswork.
+- **50+ providers** — western, Chinese, and open-weight ecosystems covered
 - **Always current** — updated as models release
-- **Free** — no sign-up, no API key, no nonsense
+- **Free** — no account, no API key, no bullshit
+
+---
 
 ## Who is this for?
 
-Anyone who uses AI models seriously:
 - **Prompt engineers** who need reference-accurate system prompts
-- **Researchers** comparing model behaviors
-- **Content creators** using Midjourney, Flux, Kling, Sora
+- **Researchers** comparing model behaviors and prompting strategies
+- **Content creators** using Midjourney, Flux, Kling, Sora, Stable Diffusion
 - **Developers** who want to understand each model's official prompting surface
-- **Anyone tired of Googling "how to prompt [model]"**
+- **Anyone tired of digging through scattered docs to figure out how to prompt a model**
+
+---
+
+## Source Quality
+
+Each prompt is tagged with a confidence level based on available documentation:
+
+| Badge | Meaning |
+|-------|---------|
+| ✅ Verified | 3+ official sources (docs + whitepaper + API reference) |
+| 🔶 Partial | 1–2 official sources, rest from community resources |
+| ⚠️ Limited | Primarily community-sourced; official docs are sparse |
+
+---
+
+## Tech
+
+Built with [Next.js](https://nextjs.org) + [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com).  
+Static export hosted on [Cloudflare Pages](https://pages.cloudflare.com).
+
+---
 
 ## License
 
-MIT — use it, fork it, share it.
+[MIT](LICENSE) — use it, fork it, share it.
