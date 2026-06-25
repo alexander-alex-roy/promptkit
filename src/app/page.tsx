@@ -397,7 +397,7 @@ function BrowseView() {
       {/* Filters */}
       <section className="space-y-3" aria-label="Filter models">
         {/* Category buttons — scrollable on mobile to save vertical space */}
-        <div className="flex gap-1.5 overflow-x-auto [-webkit-overflow-scrolling:touch] snap-x snap-mandatory" role="group" aria-label="Category filter">
+        <div className="flex gap-1.5 overflow-x-auto md:flex-wrap [-webkit-overflow-scrolling:touch] snap-x snap-mandatory" role="group" aria-label="Category filter">
           <button
             onClick={() => setCategoryFilter('all')}
             className={cn(

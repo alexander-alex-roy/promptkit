@@ -116,9 +116,16 @@ const LOWER_ENTRIES: Array<{
   systemPrompt: e.systemPrompt.toLowerCase(),
 }));
 
+// Cache search results so repeat queries are instant (no Levenshtein recomputation)
+const searchCache = new Map<string, SystemPromptEntry[]>();
+const SEARCH_CACHE_MAX = 100;
+
 export function searchEntries(query: string): SystemPromptEntry[] {
   if (!query.trim()) return [];
   const q = query.toLowerCase().trim();
+
+  const cached = searchCache.get(q);
+  if (cached !== undefined) return cached;
   const qWords = q.split(/\s+/).filter(Boolean);
   // Limit early bail — if we already have this many exact matches, skip fuzzy
   const ENOUGH_EXACT = 20;
@@ -176,7 +183,14 @@ export function searchEntries(query: string): SystemPromptEntry[] {
     if (score > 0) scored.push({ entry, score });
   }
 
-  return scored.sort((a, b) => b.score - a.score).map(s => s.entry);
+  const result = scored.sort((a, b) => b.score - a.score).map(s => s.entry);
+
+  if (searchCache.size >= SEARCH_CACHE_MAX) {
+    const first = searchCache.keys().next().value;
+    if (first !== undefined) searchCache.delete(first);
+  }
+  searchCache.set(q, result);
+  return result;
 }
 
 export type SortField = 'name' | 'provider' | 'quality' | 'date';
