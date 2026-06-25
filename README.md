@@ -82,16 +82,3 @@ Each prompt is tagged with a confidence level based on available documentation:
 | ✅ Verified | 3+ official sources (docs + whitepaper + API reference) |
 | 🔶 Partial | 1–2 official sources, rest from community resources |
 | ⚠️ Limited | Primarily community-sourced; official docs are sparse |
-
----
-
-## Tech
-
-Built with [Next.js](https://nextjs.org) + [Tailwind CSS](https://tailwindcss.com) + [shadcn/ui](https://ui.shadcn.com).  
-Static export hosted on [Cloudflare Pages](https://pages.cloudflare.com).
-
----
-
-## License
-
-[MIT](LICENSE) — use it, fork it, share it.
