@@ -100,6 +100,107 @@ const RAW_RANKINGS: Array<Omit<ArenaRanking, 'organization' | 'license'>> = [
   { rank: 70, rankSpread: '70 70', modelName: 'bagel',                                                                  score: 898,  ci: 6,  votes: 12406,   preliminary: false },
 ];
 
+/**
+ * Text-to-Video Arena rankings from arena.ai (LM Arena).
+ * Source: https://arena.ai/leaderboard/text-to-video
+ * Data snapshot: 2026-06-10
+ *
+ * 41 models ranked by Elo score based on 479,075 blind user votes.
+ */
+
+const VIDEO_RAW_RANKINGS: Array<Omit<ArenaRanking, 'organization' | 'license'>> = [
+  { rank: 1,  rankSpread: '1 1',   modelName: 'gemini-omni-flash',                               score: 1527, ci: 14, votes: 2649,   preliminary: true  },
+  { rank: 2,  rankSpread: '2 2',   modelName: 'dreamina-seedance-2.0-720p',                      score: 1466, ci: 8,  votes: 34319,  preliminary: false },
+  { rank: 3,  rankSpread: '3 3',   modelName: 'happyhorse-1.0',                                  score: 1437, ci: 7,  votes: 15722,  preliminary: false },
+  { rank: 4,  rankSpread: '4 11',  modelName: 'veo-3.1-audio-1080p',                             score: 1369, ci: 11, votes: 18829,  preliminary: false },
+  { rank: 5,  rankSpread: '4 11',  modelName: 'wan2.7-t2v',                                      score: 1368, ci: 13, votes: 3220,   preliminary: false },
+  { rank: 6,  rankSpread: '4 12',  modelName: 'veo-3.1-audio',                                   score: 1365, ci: 14, votes: 13690,  preliminary: false },
+  { rank: 7,  rankSpread: '4 11',  modelName: 'sora-2-pro',                                      score: 1365, ci: 8,  votes: 36554,  preliminary: false },
+  { rank: 8,  rankSpread: '4 11',  modelName: 'veo-3.1-fast-audio',                              score: 1364, ci: 11, votes: 39333,  preliminary: false },
+  { rank: 9,  rankSpread: '4 12',  modelName: 'veo-3.1-fast-audio-1080p',                        score: 1362, ci: 11, votes: 18979,  preliminary: false },
+  { rank: 10, rankSpread: '4 12',  modelName: 'grok-imagine-video-720p',                         score: 1358, ci: 6,  votes: 131624, preliminary: false },
+  { rank: 11, rankSpread: '4 14',  modelName: 'veo-3-fast-audio',                                score: 1348, ci: 11, votes: 25154,  preliminary: false },
+  { rank: 12, rankSpread: '8 14',  modelName: 'veo-3-audio',                                     score: 1340, ci: 12, votes: 18966,  preliminary: false },
+  { rank: 13, rankSpread: '11 14', modelName: 'wan2.6-t2v',                                      score: 1340, ci: 11, votes: 29742,  preliminary: false },
+  { rank: 14, rankSpread: '11 14', modelName: 'sora-2',                                          score: 1338, ci: 7,  votes: 49128,  preliminary: false },
+  { rank: 15, rankSpread: '15 18', modelName: 'wan2.5-t2v-preview',                              score: 1260, ci: 12, votes: 17829,  preliminary: false },
+  { rank: 16, rankSpread: '15 18', modelName: 'seedance-v1.5-pro',                               score: 1259, ci: 7,  votes: 66450,  preliminary: false },
+  { rank: 17, rankSpread: '15 20', modelName: 'veo-3',                                           score: 1254, ci: 11, votes: 14948,  preliminary: false },
+  { rank: 18, rankSpread: '15 20', modelName: 'veo-3-fast',                                      score: 1249, ci: 12, votes: 15230,  preliminary: false },
+  { rank: 19, rankSpread: '17 22', modelName: 'pixverse-v5.6',                                   score: 1238, ci: 8,  votes: 25582,  preliminary: false },
+  { rank: 20, rankSpread: '17 25', modelName: 'runway-gen-4.5',                                  score: 1234, ci: 12, votes: 25583,  preliminary: false },
+  { rank: 21, rankSpread: '19 27', modelName: 'kling-2.5-turbo-1080p',                           score: 1220, ci: 17, votes: 2104,   preliminary: false },
+  { rank: 22, rankSpread: '20 25', modelName: 'kling-2.6-pro',                                   score: 1218, ci: 7,  votes: 65389,  preliminary: false },
+  { rank: 23, rankSpread: '20 29', modelName: 'p-video',                                         score: 1209, ci: 16, votes: 7039,   preliminary: false },
+  { rank: 24, rankSpread: '19 32', modelName: 'kling-o1-pro',                                    score: 1206, ci: 27, votes: 1193,   preliminary: false },
+  { rank: 25, rankSpread: '20 31', modelName: 'ray-3',                                           score: 1206, ci: 22, votes: 1121,   preliminary: false },
+  { rank: 26, rankSpread: '22 29', modelName: 'hailuo-2.3',                                      score: 1200, ci: 7,  votes: 55930,  preliminary: false },
+  { rank: 27, rankSpread: '22 31', modelName: 'hailuo-02-pro',                                   score: 1198, ci: 12, votes: 9369,   preliminary: false },
+  { rank: 28, rankSpread: '23 31', modelName: 'seedance-v1-pro',                                 score: 1192, ci: 11, votes: 12120,  preliminary: false },
+  { rank: 29, rankSpread: '25 33', modelName: 'hailuo-02-standard',                              score: 1181, ci: 12, votes: 9333,   preliminary: false },
+  { rank: 30, rankSpread: '23 33', modelName: 'kandinsky-5.0-t2v-pro',                           score: 1176, ci: 21, votes: 2020,   preliminary: false },
+  { rank: 31, rankSpread: '25 33', modelName: 'hunyuan-video-1.5',                               score: 1170, ci: 16, votes: 4272,   preliminary: false },
+  { rank: 32, rankSpread: '28 33', modelName: 'veo-2',                                           score: 1164, ci: 16, votes: 6509,   preliminary: false },
+  { rank: 33, rankSpread: '29 33', modelName: 'kling-v2.1-master',                               score: 1163, ci: 9,  votes: 14049,  preliminary: false },
+  { rank: 34, rankSpread: '34 36', modelName: 'ltx-2-19b',                                       score: 1138, ci: 8,  votes: 48375,  preliminary: false },
+  { rank: 35, rankSpread: '34 37', modelName: 'wan-v2.2-a14b',                                   score: 1132, ci: 15, votes: 10418,  preliminary: false },
+  { rank: 36, rankSpread: '34 37', modelName: 'kandinsky-5.0-t2v-lite',                          score: 1115, ci: 18, votes: 1475,   preliminary: false },
+  { rank: 37, rankSpread: '35 37', modelName: 'seedance-v1-lite',                                score: 1113, ci: 9,  votes: 16214,  preliminary: false },
+  { rank: 38, rankSpread: '38 39', modelName: 'sora',                                            score: 1070, ci: 16, votes: 4080,   preliminary: false },
+  { rank: 39, rankSpread: '38 39', modelName: 'ray2',                                            score: 1065, ci: 17, votes: 5217,   preliminary: false },
+  { rank: 40, rankSpread: '40 41', modelName: 'pika-v2.2',                                       score: 1009, ci: 15, votes: 5728,   preliminary: false },
+  { rank: 41, rankSpread: '40 41', modelName: 'mochi-v1',                                        score: 1006, ci: 16, votes: 5862,   preliminary: false },
+];
+
+const VIDEO_ORG_LICENSE: Record<string, { organization: string; license: string }> = {
+  'gemini-omni-flash':               { organization: 'Google',     license: 'Proprietary' },
+  'dreamina-seedance-2.0-720p':      { organization: 'Bytedance',  license: 'Proprietary' },
+  'happyhorse-1.0':                  { organization: 'Alibaba-ATH', license: 'Proprietary' },
+  'veo-3.1-audio-1080p':             { organization: 'Google',     license: 'Proprietary' },
+  'wan2.7-t2v':                      { organization: 'Alibaba',    license: 'Proprietary' },
+  'veo-3.1-audio':                   { organization: 'Google',     license: 'Proprietary' },
+  'sora-2-pro':                      { organization: 'OpenAI',     license: 'Proprietary' },
+  'veo-3.1-fast-audio':              { organization: 'Google',     license: 'Proprietary' },
+  'veo-3.1-fast-audio-1080p':        { organization: 'Google',     license: 'Proprietary' },
+  'grok-imagine-video-720p':         { organization: 'xAI',        license: 'Proprietary' },
+  'veo-3-fast-audio':                { organization: 'Google',     license: 'Proprietary' },
+  'veo-3-audio':                     { organization: 'Google',     license: 'Proprietary' },
+  'wan2.6-t2v':                      { organization: 'Alibaba',    license: 'Proprietary' },
+  'sora-2':                          { organization: 'OpenAI',     license: 'Proprietary' },
+  'wan2.5-t2v-preview':              { organization: 'Alibaba',    license: 'Proprietary' },
+  'seedance-v1.5-pro':               { organization: 'Bytedance',  license: 'Proprietary' },
+  'veo-3':                           { organization: 'Google',     license: 'Proprietary' },
+  'veo-3-fast':                      { organization: 'Google',     license: 'Proprietary' },
+  'pixverse-v5.6':                   { organization: 'Pixverse',   license: 'Proprietary' },
+  'runway-gen-4.5':                  { organization: 'Runway',     license: 'Proprietary' },
+  'kling-2.5-turbo-1080p':           { organization: 'KlingAI',    license: 'Proprietary' },
+  'kling-2.6-pro':                   { organization: 'KlingAI',    license: 'Proprietary' },
+  'p-video':                         { organization: 'Pruna',      license: 'Proprietary' },
+  'kling-o1-pro':                    { organization: 'KlingAI',    license: 'Proprietary' },
+  'ray-3':                           { organization: 'Luma AI',    license: 'Proprietary' },
+  'hailuo-2.3':                      { organization: 'MiniMax',    license: 'Proprietary' },
+  'hailuo-02-pro':                   { organization: 'MiniMax',    license: 'Proprietary' },
+  'seedance-v1-pro':                 { organization: 'Bytedance',  license: 'Proprietary' },
+  'hailuo-02-standard':              { organization: 'MiniMax',    license: 'Proprietary' },
+  'kandinsky-5.0-t2v-pro':           { organization: 'Kandinsky',  license: 'MIT' },
+  'hunyuan-video-1.5':               { organization: 'Tencent',    license: 'tencent-hunyuan-community' },
+  'veo-2':                           { organization: 'Google',     license: 'Proprietary' },
+  'kling-v2.1-master':               { organization: 'KlingAI',    license: 'Proprietary' },
+  'ltx-2-19b':                       { organization: 'lightricks', license: 'ltx-2-community-license-agreement' },
+  'wan-v2.2-a14b':                   { organization: 'Alibaba',    license: 'Apache 2.0' },
+  'kandinsky-5.0-t2v-lite':          { organization: 'Kandinsky',  license: 'MIT' },
+  'seedance-v1-lite':                { organization: 'Bytedance',  license: 'Proprietary' },
+  'sora':                            { organization: 'OpenAI',     license: 'Proprietary' },
+  'ray2':                            { organization: 'Luma AI',    license: 'Proprietary' },
+  'pika-v2.2':                       { organization: 'Pika',       license: 'Proprietary' },
+  'mochi-v1':                        { organization: 'Genmo AI',   license: 'Apache 2.0' },
+};
+
+const VIDEO_ARENA_RANKINGS: ArenaRanking[] = VIDEO_RAW_RANKINGS.map(r => {
+  const meta = VIDEO_ORG_LICENSE[r.modelName];
+  return { ...r, organization: meta?.organization ?? 'Unknown', license: meta?.license ?? 'Unknown' };
+});
+
 const ORG_LICENSE: Record<string, { organization: string; license: string }> = {
   'gpt-image-2 (medium)':                                          { organization: 'OpenAI', license: 'Proprietary' },
   'reve-2.0':                                                      { organization: 'Reve', license: 'Proprietary' },
@@ -339,4 +440,84 @@ export function crossReferenceRankings(modelNames: string[]): { matched: string[
     }
   }
   return { matched, unmatched };
+}
+
+// ── Text-to-Video Arena ──────────────────────────────────────────
+
+const VIDEO_NAME_OVERRIDES: Record<string, string> = {
+  // PromptKit model names → arena leaderboard names
+  'Wan 2.7': 'wan2.7-t2v',
+  'Wan 2.6': 'wan2.6-t2v',
+  'Seedance 1.5 Pro': 'seedance-v1.5-pro',
+  'Seedance 2.0': 'dreamina-seedance-2.0-720p',
+  'Mochi 1': 'mochi-v1',
+  'Gemini Omni': 'gemini-omni-flash',
+  'Kling Video 2.6 Pro': 'kling-2.6-pro',
+  'MiniMax Hailuo 2.3': 'hailuo-2.3',
+  'MiniMax Hailuo 02': 'hailuo-02-pro',
+  'Pika 2.2': 'pika-v2.2',
+  'Grok Imagine Video': 'grok-imagine-video-720p',
+  'Veo 3.1': 'veo-3.1-audio',
+  'Veo 3.1 Fast': 'veo-3.1-fast-audio',
+  'Gemini OmniFlash': 'gemini-omni-flash',
+  'Dreamina Seedance 2.0 (720p)': 'dreamina-seedance-2.0-720p',
+  'HappyHorse 1.0': 'happyhorse-1.0',
+  'Veo 3.1 Audio (1080p)': 'veo-3.1-audio-1080p',
+  'Wan 2.7 T2V': 'wan2.7-t2v',
+  'Veo 3.1 Audio': 'veo-3.1-audio',
+  'Sora 2 Pro': 'sora-2-pro',
+  'Veo 3.1 Fast Audio': 'veo-3.1-fast-audio',
+  'Veo 3.1 Fast Audio (1080p)': 'veo-3.1-fast-audio-1080p',
+  'Grok Imagine Video (720p)': 'grok-imagine-video-720p',
+  'Veo 3 Fast Audio': 'veo-3-fast-audio',
+  'Veo 3 Audio': 'veo-3-audio',
+  'Wan 2.6 T2V': 'wan2.6-t2v',
+  'Sora 2': 'sora-2',
+  'Wan 2.5 T2V Preview': 'wan2.5-t2v-preview',
+  'Seedance V1.5 Pro': 'seedance-v1.5-pro',
+  'Veo 3': 'veo-3',
+  'Veo 3 Fast': 'veo-3-fast',
+  'PixVerse V5.6': 'pixverse-v5.6',
+  'Runway Gen-4.5': 'runway-gen-4.5',
+  'Kling 2.5 Turbo (1080p)': 'kling-2.5-turbo-1080p',
+  'Kling 2.6 Pro': 'kling-2.6-pro',
+  'P-Video': 'p-video',
+  'Kling O1 Pro': 'kling-o1-pro',
+  'Ray 3': 'ray-3',
+  'Hailuo 2.3': 'hailuo-2.3',
+  'Hailuo O2 Pro': 'hailuo-02-pro',
+  'Seedance V1 Pro': 'seedance-v1-pro',
+  'Hailuo O2 Standard': 'hailuo-02-standard',
+  'Kandinsky 5.0 T2V Pro': 'kandinsky-5.0-t2v-pro',
+  'Hunyuan Video 1.5': 'hunyuan-video-1.5',
+  'Veo 2': 'veo-2',
+  'Kling V2.1 Master': 'kling-v2.1-master',
+  'LTX 2 (19B)': 'ltx-2-19b',
+  'Wan V2.2 A14B': 'wan-v2.2-a14b',
+  'Kandinsky 5.0 T2V Lite': 'kandinsky-5.0-t2v-lite',
+  'Seedance V1 Lite': 'seedance-v1-lite',
+  'Sora': 'sora',
+  'Ray 2': 'ray2',
+  'Pika V2.2': 'pika-v2.2',
+  'Mochi V1': 'mochi-v1',
+};
+
+const VIDEO_RANKING_BY_NORMALIZED = new Map<string, ArenaRanking>();
+
+for (const r of VIDEO_ARENA_RANKINGS) {
+  const key = normalize(r.modelName);
+  if (!VIDEO_RANKING_BY_NORMALIZED.has(key)) {
+    VIDEO_RANKING_BY_NORMALIZED.set(key, r);
+  }
+}
+
+export function getVideoArenaRanking(modelName: string): ArenaRanking | null {
+  const mapped = VIDEO_NAME_OVERRIDES[modelName];
+  if (mapped) {
+    const found = VIDEO_ARENA_RANKINGS.find(r => r.modelName === mapped);
+    if (found) return found;
+  }
+
+  const key = normalize(modelName);
+  return VIDEO_RANKING_BY_NORMALIZED.get(key) ?? null;
 }

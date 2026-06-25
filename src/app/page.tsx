@@ -60,7 +60,7 @@ import {
   ShieldCheck, ShieldAlert, ShieldQuestion, Keyboard,
   MessageSquare, ChevronDown, Music, PenTool, Link, Globe2,
 } from 'lucide-react';
-import { getArenaRanking } from '@/lib/promptkit/arena-ranks';
+import { getArenaRanking, getVideoArenaRanking } from '@/lib/promptkit/arena-ranks';
 import type { ArenaRanking } from '@/lib/promptkit/arena-ranks';
 import { cn } from '@/lib/utils';
 
@@ -733,7 +733,8 @@ function DetailView() {
   const promptText = showShortVersion ? entry.shortVersion : entry.systemPrompt;
   const catConfig = CATEGORY_CONFIG[entry.category];
   const quality = getEntryQuality(entry);
-  const arenaRanking = getArenaRanking(entry.modelName);
+  const isVideo = entry.category === 'video';
+  const arenaRanking = isVideo ? getVideoArenaRanking(entry.modelName) : getArenaRanking(entry.modelName);
 
   return (
     <div className="space-y-5" ref={contentRef}>
@@ -849,7 +850,7 @@ function DetailView() {
               <Trophy className="h-5 w-5 text-purple-500 shrink-0 mt-0.5" />
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-2 mb-1.5 flex-wrap">
-                  <h3 className="text-sm font-semibold">Text-to-Image Arena Ranking</h3>
+                  <h3 className="text-sm font-semibold">{isVideo ? 'Text-to-Video' : 'Text-to-Image'} Arena Ranking</h3>
                   {arenaRanking.preliminary && (
                     <Badge variant="outline" className="text-[9px] px-1 py-0 text-amber-500 border-amber-500/30">
                       Preliminary
