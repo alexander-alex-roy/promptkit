@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const TENCENT: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // HUNYUAN IMAGE 3.0 FAMILY (Image Generation)
-  // ==========================================================================
-
   {
     id: 'sp-hunyuan-image-30',
     modelName: 'HunyuanImage 3.0',
@@ -185,10 +181,6 @@ Generate the best HunyuanImage 3.0-Instruct-Distil prompt.`,
     version: 'hunyuan-image-30-instruct-distil',
   },
 
-  // ==========================================================================
-  // HUNYUAN VIDEO 1.5 (Video Generation)
-  // ==========================================================================
-
   {
     id: 'sp-hunyuan-video-15',
     modelName: 'HunyuanVideo 1.5',
@@ -265,10 +257,6 @@ Generate the best HunyuanVideo 1.5 prompt.`,
     lastVerified: '2026-06',
     version: 'hunyuan-video-15',
   },
-
-  // ==========================================================================
-  // HUNYUAN 3D FAMILY
-  // ==========================================================================
 
   {
     id: 'sp-hunyuan-3d-31',
@@ -434,10 +422,6 @@ Generate the best Hunyuan 3D Express prompt.`,
     lastVerified: '2026-06',
     version: 'hunyuan-3d-express',
   },
-
-  // ==========================================================================
-  // HUNYUAN TEXT MODELS
-  // ==========================================================================
 
   {
     id: 'sp-hunyuan-t1',
@@ -684,36 +668,6 @@ Generate the best Hunyuan-Large prompt.`,
     ],
     lastVerified: '2026-06',
     version: 'hunyuan-large',
-  },
-
-  // ==========================================================================
-  // DEPRECATED MODELS (Keep for reference)
-  // ==========================================================================
-
-  {
-    id: 'sp-hunyuan-image-2-deprecated',
-    modelName: 'Hunyuan Image 2.0 (Deprecated)',
-    category: 'image',
-    ecosystem: 'chinese',
-    provider: 'Tencent',
-    description:
-      '⚠️ DEPRECATED — Superseded by HunyuanImage 3.0. Hunyuan Image 2.0 was Tencent\'s real-time image generation model with millisecond response times. No longer recommended for new projects.',
-    systemPrompt: `⚠️ This model is deprecated. Please migrate to HunyuanImage 3.0 or HunyuanImage 3.0-Instruct.
-
-Hunyuan Image 2.0 was a real-time image generation model with:
-- Millisecond response times[reference:58]
-- Ultra-high compression rate image codec[reference:59]
-- New diffusion architecture[reference:60]
-- Single/double-stream DiT architecture[reference:61]
-
-For new prompts, use the HunyuanImage 3.0 or 3.0-Instruct system prompt.`,
-    shortVersion: '⚠️ DEPRECATED — Use HunyuanImage 3.0 or 3.0-Instruct instead.',
-    sources: [
-      { title: 'Hunyuan Image 2.0 Announcement', url: 'https://www.ithome.com/0/xxx', type: 'news' },
-    ],
-    tips: ['Migrate to HunyuanImage 3.0 for current capabilities'],
-    lastVerified: '2026-06',
-    version: 'hunyuan-image-2-deprecated',
   },
 
 ];

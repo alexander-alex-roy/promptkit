@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const BYTEDANCE: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // IMAGE GENERATION
-  // ==========================================================================
-
   {
     id: 'sp-seedream-50-lite',
     modelName: 'Seedream 5.0 Lite',
@@ -398,10 +394,6 @@ Generate ONLY the prompt text.`,
     version: 'doubao-image',
   },
 
-  // ==========================================================================
-  // IMAGE EDITING
-  // ==========================================================================
-
   {
     id: 'sp-seededit-30',
     modelName: 'SeedEdit 3.0',
@@ -465,10 +457,6 @@ Generate ONLY the editing instruction.`,
     lastVerified: '2026-06',
     version: 'seededit-3.0',
   },
-
-  // ==========================================================================
-  // VIDEO GENERATION
-  // ==========================================================================
 
   {
     id: 'sp-seedance-25',
@@ -652,10 +640,6 @@ Generate ONLY the video prompt text.`,
     version: 'seedance-1.5-pro',
   },
 
-  // ==========================================================================
-  // DIGITAL HUMAN / ANIMATION
-  // ==========================================================================
-
   {
     id: 'sp-omnihuman-15',
     modelName: 'OmniHuman 1.5',
@@ -721,10 +705,6 @@ Generate ONLY the prompt text.`,
     lastVerified: '2026-06',
     version: 'omnihuman-1.5',
   },
-
-  // ==========================================================================
-  // UNIFIED MULTIMODAL
-  // ==========================================================================
 
   {
     id: 'sp-bagel',

@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const ANTHROPIC: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // CLAUDE FABLE 5 — Anthropic's most advanced model (June 2026)
-  // ==========================================================================
-
   {
     id: 'sp-claude-fable-5',
     modelName: 'Claude Fable 5',
@@ -127,10 +123,6 @@ Generate the best Claude Mythos 5 prompt.`,
     lastVerified: '2026-06',
     version: 'claude-mythos-5',
   },
-
-  // ==========================================================================
-  // CLAUDE OPUS 4.8 — Latest Opus model (2026)
-  // ==========================================================================
 
   {
     id: 'sp-claude-opus-48',
@@ -299,10 +291,6 @@ Generate the best Claude Opus 4.6 prompt.`,
     version: 'claude-opus-4-6',
   },
 
-  // ==========================================================================
-  // CLAUDE SONNET 4.6 — Balanced performance model
-  // ==========================================================================
-
   {
     id: 'sp-claude-sonnet-46',
     modelName: 'Claude Sonnet 4.6',
@@ -358,10 +346,6 @@ Generate the best Claude Sonnet 4.6 prompt.`,
     lastVerified: '2026-06',
     version: 'claude-sonnet-4-6',
   },
-
-  // ==========================================================================
-  // CLAUDE HAIKU 4.5 — Fastest, most cost-effective model
-  // ==========================================================================
 
   {
     id: 'sp-claude-haiku-45',
@@ -421,72 +405,6 @@ Generate the best Claude Haiku 4.5 prompt.`,
     ],
     lastVerified: '2026-06',
     version: 'claude-haiku-4-5',
-  },
-
-  // ==========================================================================
-  // DEPRECATED MODELS (Keep for reference)
-  // ==========================================================================
-
-  {
-    id: 'sp-claude-opus-41-deprecated',
-    modelName: 'Claude Opus 4.1 (Deprecated)',
-    category: 'text',
-    ecosystem: 'western',
-    provider: 'Anthropic',
-    description:
-      '⚠️ DEPRECATED — Retiring August 5, 2026. Migrate to Claude Opus 4.8. Model ID: claude-opus-4-1-20250805[reference:36]',
-    systemPrompt: `⚠️ This model is deprecated and will be retired on August 5, 2026[reference:37].
-
-Please migrate to Claude Opus 4.8[reference:38].
-
-For new prompts, use the Claude Opus 4.8 system prompt.`,
-    shortVersion: '⚠️ DEPRECATED — Retires August 5, 2026. Use Claude Opus 4.8 instead.',
-    sources: [
-      { title: 'Claude Platform Deprecation Notice', url: 'https://platform.claude.com/docs/en/about-claude/models/migration-guide', type: 'docs' },
-    ],
-    tips: ['Migrate to Claude Opus 4.8 before August 5, 2026'],
-    lastVerified: '2026-06',
-    version: 'claude-opus-41-deprecated',
-  },
-
-  {
-    id: 'sp-claude-opus-45-deprecated',
-    modelName: 'Claude Opus 4.5 (Deprecated)',
-    category: 'text',
-    ecosystem: 'western',
-    provider: 'Anthropic',
-    description:
-      '⚠️ DEPRECATED — Superseded by Claude Opus 4.6 and later models. Opus 4.5 was the flagship model in the Claude 4.5 generation.',
-    systemPrompt: `⚠️ This model is deprecated. Please migrate to Claude Opus 4.6, 4.7, or 4.8.
-
-For new prompts, use the Claude Opus 4.8 system prompt.`,
-    shortVersion: '⚠️ DEPRECATED — Use Claude Opus 4.6, 4.7, or 4.8 instead.',
-    sources: [
-      { title: 'Claude System Prompts', url: 'https://platform.claude.com/docs/en/release-notes/system-prompts', type: 'docs' },
-    ],
-    tips: ['Migrate to Claude Opus 4.6 or newer'],
-    lastVerified: '2026-06',
-    version: 'claude-opus-45-deprecated',
-  },
-
-  {
-    id: 'sp-claude-sonnet-45-deprecated',
-    modelName: 'Claude Sonnet 4.5 (Deprecated)',
-    category: 'text',
-    ecosystem: 'western',
-    provider: 'Anthropic',
-    description:
-      '⚠️ DEPRECATED — Superseded by Claude Sonnet 4.6. Sonnet 4.5 balanced performance and speed in the Claude 4.5 generation[reference:39]',
-    systemPrompt: `⚠️ This model is deprecated. Please migrate to Claude Sonnet 4.6.
-
-For new prompts, use the Claude Sonnet 4.6 system prompt.`,
-    shortVersion: '⚠️ DEPRECATED — Use Claude Sonnet 4.6 instead.',
-    sources: [
-      { title: 'Claude System Prompts', url: 'https://platform.claude.com/docs/en/release-notes/system-prompts', type: 'docs' },
-    ],
-    tips: ['Migrate to Claude Sonnet 4.6 for current capabilities'],
-    lastVerified: '2026-06',
-    version: 'claude-sonnet-45-deprecated',
   },
 
 ];

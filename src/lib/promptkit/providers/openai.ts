@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const OPENAI: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // TEXT MODELS — GPT-5 FAMILY (Current)
-  // ==========================================================================
-
   {
     id: 'sp-gpt55',
     modelName: 'GPT-5.5',
@@ -563,10 +559,6 @@ Generate the best GPT OSS 20B prompt.`,
     version: 'gpt-oss-20b',
   },
 
-  // ==========================================================================
-  // REASONING MODELS — o-series
-  // ==========================================================================
-
   {
     id: 'sp-o3',
     modelName: 'o3',
@@ -801,10 +793,6 @@ Generate the best o4-mini Deep Research prompt.`,
     version: 'o4-mini-deep-research',
   },
 
-  // ==========================================================================
-  // IMAGE MODELS
-  // ==========================================================================
-
   {
     id: 'sp-gpt-image-2',
     modelName: 'GPT Image 2',
@@ -963,10 +951,6 @@ Generate the best GPT Image 1 Mini prompt.`,
     version: 'gpt-image-1-mini',
   },
 
-  // ==========================================================================
-  // VIDEO MODELS — Sora
-  // ==========================================================================
-
   {
     id: 'sp-sora-2',
     modelName: 'Sora 2',
@@ -1084,10 +1068,6 @@ Generate the best Sora 2 Pro prompt.`,
     version: 'sora-2-pro',
   },
 
-  // ==========================================================================
-  // AUDIO MODELS
-  // ==========================================================================
-
   {
     id: 'sp-gpt-audio',
     modelName: 'GPT Audio',
@@ -1162,10 +1142,6 @@ Generate the best GPT Audio Mini prompt.`,
     lastVerified: '2026-06',
     version: 'gpt-audio-mini',
   },
-
-  // ==========================================================================
-  // REALTIME MODELS
-  // ==========================================================================
 
   {
     id: 'sp-gpt-realtime',
@@ -1242,10 +1218,6 @@ Generate the best GPT Realtime Mini prompt.`,
     version: 'gpt-realtime-mini',
   },
 
-  // ==========================================================================
-  // VISION MODELS (Legacy — keep for compatibility)
-  // ==========================================================================
-
   {
     id: 'sp-gpt4o-vision',
     modelName: 'GPT-4o Vision',
@@ -1300,10 +1272,6 @@ Generate the best GPT-4o Vision prompt.`,
     lastVerified: '2026-06',
     version: 'gpt-4o-vision',
   },
-
-  // ==========================================================================
-  // SPECIALIZED MODELS
-  // ==========================================================================
 
   {
     id: 'sp-computer-use-preview',
@@ -1381,10 +1349,6 @@ Generate the best Omni Moderation prompt.`,
     lastVerified: '2026-06',
     version: 'omni-moderation',
   },
-
-  // ==========================================================================
-  // LEGACY / GPT-4 FAMILY (Keep for compatibility)
-  // ==========================================================================
 
   {
     id: 'sp-gpt4o',

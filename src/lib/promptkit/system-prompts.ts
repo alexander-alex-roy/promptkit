@@ -10,6 +10,11 @@ const VIDEO = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'video');
 const VISION = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'vision');
 const CHARACTER = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'character');
 const THREE_D = ALL_PROVIDER_ENTRIES.filter(e => e.category === '3d');
+const AUDIO = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'audio');
+const DESIGN = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'design');
+const EMBEDDING = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'embedding');
+const MODERATION = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'moderation');
+const WORLD = ALL_PROVIDER_ENTRIES.filter(e => e.category === 'world');
 
 export const ALL_ENTRIES: SystemPromptEntry[] = ALL_PROVIDER_ENTRIES;
 
@@ -21,6 +26,11 @@ export const ENTRIES_BY_CATEGORY: Record<ModelCategory, SystemPromptEntry[]> = {
   vision: VISION,
   character: CHARACTER,
   '3d': THREE_D,
+  audio: AUDIO,
+  design: DESIGN,
+  embedding: EMBEDDING,
+  moderation: MODERATION,
+  world: WORLD,
 };
 
 export function getEntryById(id: string): SystemPromptEntry | undefined {

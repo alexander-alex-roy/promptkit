@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const GOOGLE: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // GEMINI 3.5 FAMILY (Latest - May 2026)
-  // ==========================================================================
-
   {
     id: 'sp-gemini-35-flash',
     modelName: 'Gemini 3.5 Flash',
@@ -63,10 +59,6 @@ Generate the best Gemini 3.5 Flash prompt.`,
     lastVerified: '2026-06',
     version: 'gemini-3.5-flash',
   },
-
-  // ==========================================================================
-  // GEMINI 3.1 FAMILY
-  // ==========================================================================
 
   {
     id: 'sp-gemini-31-pro',
@@ -174,10 +166,6 @@ Generate the best Gemini 3.1 Flash-Lite prompt.`,
     version: 'gemini-3.1-flash-lite',
   },
 
-  // ==========================================================================
-  // GEMINI 3 FAMILY
-  // ==========================================================================
-
   {
     id: 'sp-gemini-3-flash',
     modelName: 'Gemini 3 Flash',
@@ -226,10 +214,6 @@ Generate the best Gemini 3 Flash prompt.`,
     lastVerified: '2026-06',
     version: 'gemini-3-flash',
   },
-
-  // ==========================================================================
-  // IMAGE MODELS
-  // ==========================================================================
 
   {
     id: 'sp-gemini-31-flash-image',
@@ -458,12 +442,8 @@ Generate the best Imagen 4 prompt.`,
     version: 'imagen-4',
   },
 
-  // ==========================================================================
-  // VIDEO MODELS — VEO FAMILY
-  // ==========================================================================
-
   {
-    id: 'sp-veo-31',
+    id: 'sp-veo-31-google',
     modelName: 'Veo 3.1',
     category: 'video',
     ecosystem: 'western',
@@ -528,10 +508,6 @@ Generate the best Veo 3.1 prompt.`,
     version: 'veo-3.1',
   },
 
-  // ==========================================================================
-  // AUDIO MODELS
-  // ==========================================================================
-
   {
     id: 'sp-gemini-audio',
     modelName: 'Gemini Audio',
@@ -580,10 +556,6 @@ Generate the best Gemini Audio prompt.`,
     lastVerified: '2026-06',
     version: 'gemini-audio',
   },
-
-  // ==========================================================================
-  // MUSIC MODELS
-  // ==========================================================================
 
   {
     id: 'sp-lyria-3',
@@ -645,10 +617,6 @@ Generate the best Lyria 3 prompt.`,
     version: 'lyria-3',
   },
 
-  // ==========================================================================
-  // WORLD MODELS
-  // ==========================================================================
-
   {
     id: 'sp-genie-3',
     modelName: 'Genie 3',
@@ -704,10 +672,6 @@ Generate the best Genie 3 prompt.`,
     lastVerified: '2026-06',
     version: 'genie-3',
   },
-
-  // ==========================================================================
-  // OPEN MODELS — GEMMA FAMILY
-  // ==========================================================================
 
   {
     id: 'sp-gemma-4-31b',
@@ -834,10 +798,6 @@ Generate the best Gemma 4 26B prompt.`,
     version: 'gemma-4-26b',
   },
 
-  // ==========================================================================
-  // EMBEDDING MODELS
-  // ==========================================================================
-
   {
     id: 'sp-gemini-embedding',
     modelName: 'Gemini Embedding',
@@ -888,10 +848,6 @@ Generate the best Gemini Embedding prompt.`,
     lastVerified: '2026-06',
     version: 'gemini-embedding',
   },
-
-  // ==========================================================================
-  // VISION MODELS (Legacy — keep for compatibility)
-  // ==========================================================================
 
   {
     id: 'sp-gemini-vision',

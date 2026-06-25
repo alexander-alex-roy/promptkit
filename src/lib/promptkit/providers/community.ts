@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const COMMUNITY: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // PONY DIFFUSION — Most popular NSFW SDXL finetune (V7 as of 2026)
-  // ==========================================================================
-
   {
     id: 'sp-pony-diffusion',
     modelName: 'Pony Diffusion',
@@ -97,10 +93,6 @@ Generate BOTH positive and negative prompts.`,
     version: 'pony-diffusion-v7',
   },
 
-  // ==========================================================================
-  // ANIMATEDIFF — Animation framework for Stable Diffusion
-  // ==========================================================================
-
   {
     id: 'sp-animatediff',
     modelName: 'AnimateDiff',
@@ -187,12 +179,8 @@ Generate ONLY the prompt text.`,
     version: 'animatediff',
   },
 
-  // ==========================================================================
-  // SDXL (Base) — Community prompting guidelines
-  // ==========================================================================
-
   {
-    id: 'sp-sdxl',
+    id: 'sp-sdxl-community',
     modelName: 'SDXL (Community)',
     category: 'image',
     ecosystem: 'open-weight',
@@ -250,12 +238,8 @@ Generate the best SDXL prompt.`,
     version: 'sdxl-community',
   },
 
-  // ==========================================================================
-  // STABLE DIFFUSION 3 (SD3) — Community prompting guidelines
-  // ==========================================================================
-
   {
-    id: 'sp-sd3',
+    id: 'sp-sd3-community',
     modelName: 'SD3 (Community)',
     category: 'image',
     ecosystem: 'open-weight',
@@ -318,10 +302,6 @@ Generate the best SD3 prompt.`,
     lastVerified: '2026-06',
     version: 'sd3-community',
   },
-
-  // ==========================================================================
-  // ILLUSTRIOUS XL (ILXL) — Community model
-  // ==========================================================================
 
   {
     id: 'sp-illustrious-xl',
@@ -389,12 +369,8 @@ Generate BOTH positive and negative prompts.`,
     version: 'illustrious-xl',
   },
 
-  // ==========================================================================
-  // STABLE DIFFUSION 1.5 — Community prompting guidelines
-  // ==========================================================================
-
   {
-    id: 'sp-sd15',
+    id: 'sp-sd15-community',
     modelName: 'SD 1.5 (Community)',
     category: 'image',
     ecosystem: 'open-weight',

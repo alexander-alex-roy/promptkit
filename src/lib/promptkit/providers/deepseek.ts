@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const DEEPSEEK: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // DEEPSEEK V4 FAMILY (Current - April 2026)
-  // ==========================================================================
-
   {
     id: 'sp-deepseek-v4-pro',
     modelName: 'DeepSeek V4 Pro',
@@ -149,10 +145,6 @@ Generate the best DeepSeek V4 Flash prompt for the user's goal.`,
     version: 'deepseek-v4-flash',
   },
 
-  // ==========================================================================
-  // DEEPSEEK V3.2 (Agentic - December 2025)
-  // ==========================================================================
-
   {
     id: 'sp-deepseek-v32',
     modelName: 'DeepSeek V3.2',
@@ -210,10 +202,6 @@ Generate the best DeepSeek V3.2 prompt.`,
     lastVerified: '2026-06',
     version: 'deepseek-v3.2',
   },
-
-  // ==========================================================================
-  // DEEPSEEK R1 FAMILY (Reasoning Models)
-  // ==========================================================================
 
   {
     id: 'sp-deepseek-r1-0528',
@@ -278,60 +266,6 @@ Generate the best DeepSeek R1-0528 prompt.`,
     ],
     lastVerified: '2026-06',
     version: 'deepseek-r1-0528',
-  },
-
-  // ==========================================================================
-  // DEPRECATED MODELS (Keep for reference, mark as deprecated)
-  // ==========================================================================
-
-  {
-    id: 'sp-deepseek-chat-deprecated',
-    modelName: 'deepseek-chat (Deprecated)',
-    category: 'text',
-    ecosystem: 'chinese',
-    provider: 'DeepSeek',
-    description:
-      '⚠️ DEPRECATED — Will be fully retired and inaccessible after July 24, 2026. Corresponds to non-thinking mode of deepseek-v4-flash.[reference:58]',
-    systemPrompt: `⚠️ This model is deprecated and will be retired on July 24, 2026.
-
-Please migrate to deepseek-v4-flash (non-thinking mode) which provides the same functionality.
-
-For new prompts, use the DeepSeek V4 Flash system prompt.`,
-    shortVersion: `⚠️ DEPRECATED — Use deepseek-v4-flash instead. Retires July 24, 2026.`,
-    sources: [
-      { title: 'Models & Pricing', url: 'https://api-docs.deepseek.com/quick_start/pricing', type: 'docs' },
-    ],
-    tips: [
-      'Migrate to deepseek-v4-flash (non-thinking mode)',
-      'Retirement date: July 24, 2026 15:59 UTC',
-    ],
-    lastVerified: '2026-06',
-    version: 'deepseek-chat-deprecated',
-  },
-
-  {
-    id: 'sp-deepseek-reasoner-deprecated',
-    modelName: 'deepseek-reasoner (Deprecated)',
-    category: 'text',
-    ecosystem: 'chinese',
-    provider: 'DeepSeek',
-    description:
-      '⚠️ DEPRECATED — Will be fully retired and inaccessible after July 24, 2026. Corresponds to thinking mode of deepseek-v4-flash.[reference:59]',
-    systemPrompt: `⚠️ This model is deprecated and will be retired on July 24, 2026.
-
-Please migrate to deepseek-v4-flash (thinking mode) which provides the same functionality.
-
-For new prompts, use the DeepSeek V4 Flash system prompt.`,
-    shortVersion: `⚠️ DEPRECATED — Use deepseek-v4-flash instead. Retires July 24, 2026.`,
-    sources: [
-      { title: 'Models & Pricing', url: 'https://api-docs.deepseek.com/quick_start/pricing', type: 'docs' },
-    ],
-    tips: [
-      'Migrate to deepseek-v4-flash (thinking mode)',
-      'Retirement date: July 24, 2026 15:59 UTC',
-    ],
-    lastVerified: '2026-06',
-    version: 'deepseek-reasoner-deprecated',
   },
 
 ];

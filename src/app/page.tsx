@@ -58,7 +58,7 @@ import {
   Layers, GitCompare, X, Sparkles, Shield,
   Eye, Code2, Users, Box, Video, ImageIcon, Type,
   ShieldCheck, ShieldAlert, ShieldQuestion, Keyboard,
-  MessageSquare, ChevronDown,
+  MessageSquare, ChevronDown, Music, PenTool, Link, Globe2,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -72,6 +72,11 @@ const CATEGORY_CONFIG: Record<ModelCategory, { label: string; icon: React.ReactN
   vision:    { label: 'Vision',    icon: <Eye className="h-3.5 w-3.5" /> },
   character: { label: 'Character', icon: <Users className="h-3.5 w-3.5" /> },
   '3d':      { label: '3D',        icon: <Box className="h-3.5 w-3.5" /> },
+  audio:     { label: 'Audio',     icon: <Music className="h-3.5 w-3.5" /> },
+  design:    { label: 'Design',    icon: <PenTool className="h-3.5 w-3.5" /> },
+  embedding: { label: 'Embedding', icon: <Link className="h-3.5 w-3.5" /> },
+  moderation:{ label: 'Moderation', icon: <ShieldAlert className="h-3.5 w-3.5" /> },
+  world:     { label: 'World',     icon: <Globe2 className="h-3.5 w-3.5" /> },
 };
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_CONFIG) as ModelCategory[];
@@ -113,6 +118,7 @@ const SOURCE_ICONS: Record<SourceRef['type'], React.ReactNode> = {
   'model-card': <Shield className="h-3.5 w-3.5" />,
   guide: <BookOpen className="h-3.5 w-3.5" />,
   'api-reference': <FileText className="h-3.5 w-3.5" />,
+  news: <Globe className="h-3.5 w-3.5" />,
 };
 
 // ==================== SOURCE QUALITY BADGE ====================

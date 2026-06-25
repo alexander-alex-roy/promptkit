@@ -1,10 +1,10 @@
-export type ModelCategory = 'text' | 'image' | 'video' | 'vision' | 'code' | '3d' | 'character';
+export type ModelCategory = 'text' | 'image' | 'video' | 'vision' | 'code' | '3d' | 'character' | 'audio' | 'design' | 'embedding' | 'moderation' | 'world';
 export type ModelEcosystem = 'western' | 'chinese' | 'open-weight';
 
 export interface SourceRef {
   title: string;
   url?: string;
-  type: 'docs' | 'whitepaper' | 'blog' | 'github' | 'model-card' | 'guide' | 'api-reference';
+  type: 'docs' | 'whitepaper' | 'blog' | 'github' | 'model-card' | 'guide' | 'api-reference' | 'news';
   date?: string;
 }
 

@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const ALIBABA: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // QWEN 3.7 FAMILY (Latest - May 2026)
-  // ==========================================================================
-
   {
     id: 'sp-qwen-37-max',
     modelName: 'Qwen3.7 Max',
@@ -121,10 +117,6 @@ Generate the best Qwen3.7 Plus prompt.`,
     version: 'qwen-3.7-plus',
   },
 
-  // ==========================================================================
-  // QWEN 3.6 FAMILY
-  // ==========================================================================
-
   {
     id: 'sp-qwen-36-plus',
     modelName: 'Qwen3.6 Plus',
@@ -178,10 +170,6 @@ Generate the best Qwen3.6 Plus prompt.`,
     lastVerified: '2026-06',
     version: 'qwen-3.6-plus',
   },
-
-  // ==========================================================================
-  // QWEN 3.5 FAMILY
-  // ==========================================================================
 
   {
     id: 'sp-qwen-35',
@@ -308,10 +296,6 @@ Generate the best Qwen3.5 Flash prompt.`,
     lastVerified: '2026-06',
     version: 'qwen-3.5-flash',
   },
-
-  // ==========================================================================
-  // OMNIMODAL MODELS
-  // ==========================================================================
 
   {
     id: 'sp-qwen-35-omni',
@@ -487,10 +471,6 @@ Generate the best Qwen3 Omni-Flash prompt.`,
     version: 'qwen-3-omni-flash',
   },
 
-  // ==========================================================================
-  // CODE MODELS
-  // ==========================================================================
-
   {
     id: 'sp-qwen-3-coder-next',
     modelName: 'Qwen3-Coder-Next',
@@ -591,10 +571,6 @@ Generate the best Qwen-Coder-Turbo prompt.`,
     lastVerified: '2026-06',
     version: 'qwen-coder-turbo',
   },
-
-  // ==========================================================================
-  // IMAGE MODELS
-  // ==========================================================================
 
   {
     id: 'sp-qwen-image-2512',
@@ -758,10 +734,6 @@ Generate ONLY the prompt text.`,
     version: 'tongyi-wanxiang',
   },
 
-  // ==========================================================================
-  // VISION LANGUAGE MODELS
-  // ==========================================================================
-
   {
     id: 'sp-qwen-3-vl',
     modelName: 'Qwen3-VL',
@@ -812,10 +784,6 @@ Generate the best Qwen3-VL prompt.`,
     lastVerified: '2026-06',
     version: 'qwen-3-vl',
   },
-
-  // ==========================================================================
-  // VIDEO MODELS — WAN FAMILY
-  // ==========================================================================
 
   {
     id: 'sp-wan-30',
@@ -1000,10 +968,6 @@ Generate ONLY the video prompt text.`,
     version: 'wan-2.6',
   },
 
-  // ==========================================================================
-  // AUDIO MODELS
-  // ==========================================================================
-
   {
     id: 'sp-qwen-voice-design',
     modelName: 'Qwen Voice Design',
@@ -1054,30 +1018,6 @@ Generate the best Qwen Voice Design prompt.`,
     ],
     lastVerified: '2026-06',
     version: 'qwen-voice-design',
-  },
-
-  // ==========================================================================
-  // DEPRECATED MODELS (Keep for reference)
-  // ==========================================================================
-
-  {
-    id: 'sp-qwen-25-deprecated',
-    modelName: 'Qwen 2.5 (Deprecated)',
-    category: 'text',
-    ecosystem: 'chinese',
-    provider: 'Alibaba',
-    description:
-      '⚠️ DEPRECATED — Superseded by Qwen 3.5 and later models. Qwen 2.5 was a dense decoder-only LLM with 0.5B-72B parameters, 128K context, and improved instruction following.',
-    systemPrompt: `⚠️ This model is deprecated. Please migrate to Qwen 3.5 or later.
-
-For new prompts, use the Qwen 3.5 system prompt.`,
-    shortVersion: '⚠️ DEPRECATED — Use Qwen 3.5 or later.',
-    sources: [
-      { title: 'Qwen 2.5 Documentation', url: 'https://qwen.readthedocs.io/en/v2.5/', type: 'docs' },
-    ],
-    tips: ['Migrate to Qwen 3.5 or later for current capabilities'],
-    lastVerified: '2026-06',
-    version: 'qwen-25-deprecated',
   },
 
 ];

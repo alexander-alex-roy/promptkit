@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const BAIDU: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // ERNIE 5.1 — Latest flagship MoE model (May 2026)
-  // ==========================================================================
-
   {
     id: 'sp-ernie-51',
     modelName: 'ERNIE 5.1',
@@ -117,10 +113,6 @@ Generate the best ERNIE 5.1 Preview prompt.`,
     version: 'ernie-5.1-preview',
   },
 
-  // ==========================================================================
-  // ERNIE 5.0 — 2.4T Unified Multimodal Foundation Model (February 2026)
-  // ==========================================================================
-
   {
     id: 'sp-ernie-50',
     modelName: 'ERNIE 5.0',
@@ -176,10 +168,6 @@ Generate the best ERNIE 5.0 prompt.`,
     lastVerified: '2026-06',
     version: 'ernie-5.0',
   },
-
-  // ==========================================================================
-  // ERNIE 4.5 — Open-source model family (Apache 2.0)
-  // ==========================================================================
 
   {
     id: 'sp-ernie-45',
@@ -300,10 +288,6 @@ Generate the best ERNIE 4.5 VL prompt.`,
     version: 'ernie-4.5-vl',
   },
 
-  // ==========================================================================
-  // ERNIE X1 — Reasoning model (March 2025)
-  // ==========================================================================
-
   {
     id: 'sp-ernie-x1',
     modelName: 'ERNIE X1',
@@ -363,10 +347,6 @@ Generate the best ERNIE X1 prompt.`,
     lastVerified: '2026-06',
     version: 'ernie-x1',
   },
-
-  // ==========================================================================
-  // ERNIE-IMAGE — Text-to-Image Model (8B DiT)
-  // ==========================================================================
 
   {
     id: 'sp-ernie-image',
@@ -486,10 +466,6 @@ Generate the best ERNIE-Image-Turbo prompt.`,
     version: 'ernie-image-turbo',
   },
 
-  // ==========================================================================
-  // ERNIE LITE — Lightweight text models
-  // ==========================================================================
-
   {
     id: 'sp-ernie-lite',
     modelName: 'ERNIE-Lite',
@@ -539,10 +515,6 @@ Generate the best ERNIE-Lite prompt.`,
     lastVerified: '2026-06',
     version: 'ernie-lite',
   },
-
-  // ==========================================================================
-  // ERNIE SPEED — High-performance base model
-  // ==========================================================================
 
   {
     id: 'sp-ernie-speed',
@@ -596,10 +568,6 @@ Generate the best ERNIE-Speed prompt.`,
     version: 'ernie-speed',
   },
 
-  // ==========================================================================
-  // ERNIE TURBO — Fast, cost-effective model
-  // ==========================================================================
-
   {
     id: 'sp-ernie-turbo',
     modelName: 'ERNIE-Turbo',
@@ -645,10 +613,6 @@ Generate the best ERNIE-Turbo prompt.`,
     lastVerified: '2026-06',
     version: 'ernie-turbo',
   },
-
-  // ==========================================================================
-  // ERNIE 4.0 — Previous generation flagship
-  // ==========================================================================
 
   {
     id: 'sp-ernie-40',
@@ -697,10 +661,6 @@ Generate the best ERNIE 4.0 prompt.`,
     lastVerified: '2026-06',
     version: 'ernie-4.0',
   },
-
-  // ==========================================================================
-  // QIANFAN — Baidu's MaaS platform models
-  // ==========================================================================
 
   {
     id: 'sp-qianfan-agent',

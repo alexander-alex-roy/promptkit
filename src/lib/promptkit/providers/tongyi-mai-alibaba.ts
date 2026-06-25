@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const TONGYI_MAI_ALIBABA: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // Z-IMAGE FAMILY — Text-to-Image Models
-  // ==========================================================================
-
   {
     id: 'sp-z-image-turbo',
     modelName: 'Z-Image-Turbo',
@@ -250,10 +246,6 @@ Generate the best Z-Image-Edit prompt.`,
     lastVerified: '2026-06',
     version: 'z-image-edit',
   },
-
-  // ==========================================================================
-  // MAI-UI FAMILY — GUI Agent Models
-  // ==========================================================================
 
   {
     id: 'sp-mai-ui-2b',

@@ -2,10 +2,6 @@ import type { SystemPromptEntry } from '../types';
 
 export const ADOBE: SystemPromptEntry[] = [
 
-  // ==========================================================================
-  // FIREFLY IMAGE 5 — Latest flagship image model (2026)
-  // ==========================================================================
-
   {
     id: 'sp-firefly-image-5',
     modelName: 'Firefly Image 5',
@@ -70,10 +66,6 @@ Generate ONLY the natural language prompt.`,
     version: 'firefly-image-5',
   },
 
-  // ==========================================================================
-  // FIREFLY IMAGE 4 — High-quality image model
-  // ==========================================================================
-
   {
     id: 'sp-firefly-image-4',
     modelName: 'Firefly Image 4',
@@ -136,10 +128,6 @@ Generate ONLY the natural language prompt.`,
     lastVerified: '2026-06',
     version: 'firefly-image-4',
   },
-
-  // ==========================================================================
-  // FIREFLY IMAGE 4 ULTRA — Premium photorealism model
-  // ==========================================================================
 
   {
     id: 'sp-firefly-image-4-ultra',
@@ -204,10 +192,6 @@ Generate ONLY the natural language prompt.`,
     version: 'firefly-image-4-ultra',
   },
 
-  // ==========================================================================
-  // FIREFLY IMAGE 3 — Legacy image model
-  // ==========================================================================
-
   {
     id: 'sp-firefly-image-3',
     modelName: 'Firefly Image 3',
@@ -252,10 +236,6 @@ Generate ONLY the natural language prompt.`,
     lastVerified: '2026-06',
     version: 'firefly-image-3',
   },
-
-  // ==========================================================================
-  // FIREFLY FILL & EXPAND — Photoshop generative fill model
-  // ==========================================================================
 
   {
     id: 'sp-firefly-fill-expand',
@@ -306,10 +286,6 @@ Generate ONLY the natural language prompt.`,
     lastVerified: '2026-06',
     version: 'firefly-fill-expand',
   },
-
-  // ==========================================================================
-  // FIREFLY VIDEO — Video generation model
-  // ==========================================================================
 
   {
     id: 'sp-firefly-video',
@@ -377,10 +353,6 @@ Generate ONLY the video prompt text.`,
     version: 'firefly-video',
   },
 
-  // ==========================================================================
-  // FIREFLY VECTOR — Text-to-Vector model for Illustrator
-  // ==========================================================================
-
   {
     id: 'sp-firefly-vector',
     modelName: 'Firefly Vector',
@@ -436,10 +408,6 @@ Generate ONLY the prompt text.`,
     lastVerified: '2026-06',
     version: 'firefly-vector',
   },
-
-  // ==========================================================================
-  // FIREFLY DESIGN INTELLIGENCE — Brand consistency model
-  // ==========================================================================
 
   {
     id: 'sp-firefly-design-intelligence',
@@ -503,10 +471,6 @@ Generate ONLY the prompt text.`,
     lastVerified: '2026-06',
     version: 'firefly-design-intelligence',
   },
-
-  // ==========================================================================
-  // ADOBE SENSEI — AI platform (Enterprise)
-  // ==========================================================================
 
   {
     id: 'sp-adobe-sensei',
