@@ -120,6 +120,7 @@ const SOURCE_ICONS: Record<SourceRef['type'], React.ReactNode> = {
   'api-reference': <FileText className="h-3.5 w-3.5" />,
   news: <Globe className="h-3.5 w-3.5" />,
   analysis: <FileText className="h-3.5 w-3.5" />,
+  'release-notes': <FileText className="h-3.5 w-3.5" />,
 };
 
 

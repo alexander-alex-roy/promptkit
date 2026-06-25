@@ -4,7 +4,7 @@ export type ModelEcosystem = 'western' | 'chinese' | 'open-weight';
 export interface SourceRef {
   title: string;
   url?: string;
-  type: 'docs' | 'whitepaper' | 'blog' | 'github' | 'model-card' | 'guide' | 'api-reference' | 'news' | 'analysis';
+  type: 'docs' | 'whitepaper' | 'blog' | 'github' | 'model-card' | 'guide' | 'api-reference' | 'news' | 'analysis' | 'release-notes';
   date?: string;
 }
 
