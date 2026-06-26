@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import Link from 'next/link';
 import { useAppStore } from '@/lib/promptkit/store';
 import {
   ALL_ENTRIES,
@@ -58,7 +59,7 @@ import {
   Layers, GitCompare, X, Sparkles, Shield,
   Eye, Code2, Users, Box, Video, ImageIcon, Type,
   ShieldCheck, ShieldAlert, ShieldQuestion, Keyboard,
-  MessageSquare, ChevronDown, Music, PenTool, Link, Globe2,
+  MessageSquare, ChevronDown, Music, PenTool, Link as LinkIcon, Globe2,
 } from 'lucide-react';
 import { getArenaRanking, getVideoArenaRanking, getTextArenaRanking, getImageToVideoArenaRanking } from '@/lib/promptkit/arena-ranks';
 import type { ArenaRanking } from '@/lib/promptkit/arena-ranks';
@@ -76,7 +77,7 @@ const CATEGORY_CONFIG: Record<ModelCategory, { label: string; icon: React.ReactN
   '3d':      { label: '3D',        icon: <Box className="h-3.5 w-3.5" /> },
   audio:     { label: 'Audio',     icon: <Music className="h-3.5 w-3.5" /> },
   design:    { label: 'Design',    icon: <PenTool className="h-3.5 w-3.5" /> },
-  embedding: { label: 'Embedding', icon: <Link className="h-3.5 w-3.5" /> },
+  embedding: { label: 'Embedding', icon: <LinkIcon className="h-3.5 w-3.5" /> },
   moderation:{ label: 'Moderation', icon: <ShieldAlert className="h-3.5 w-3.5" /> },
   world:     { label: 'World',     icon: <Globe2 className="h-3.5 w-3.5" /> },
 };
@@ -193,33 +194,6 @@ function CopyButton({ text, label = 'Copy', className }: { text: string; label?:
 }
 
 
-function JsonLd() {
-  const schema = {
-    '@context': 'https://schema.org',
-    '@type': 'SoftwareApplication',
-    name: 'PromptKit',
-    description: 'Expert-crafted system prompts for 380+ AI models across 45+ providers. Copy the system prompt for your target model, paste it into ChatGPT or Claude, and get optimized prompts. Based on official docs, whitepapers, and guides.',
-    applicationCategory: 'DeveloperApplication',
-    operatingSystem: 'Web',
-    offers: {
-      '@type': 'Offer',
-      price: '0',
-      priceCurrency: 'USD',
-    },
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      ratingCount: '120',
-    },
-  };
-
-  return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  );
-}
 
 
 function Header() {
@@ -584,9 +558,9 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
   }, [query]);
 
   return (
+    <Link href={`/model/${entry.id}`} className="block">
     <Card
       className="group hover:border-amber-500/30 transition-all cursor-pointer"
-      onClick={() => setSelectedEntryId(entry.id)}
       role="listitem"
     >
       <CardContent className="pt-5">
@@ -676,6 +650,7 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
         </div>
       </CardContent>
     </Card>
+    </Link>
   );
 });
 
@@ -1341,9 +1316,7 @@ function SearchDialog() {
                     key={e.id}
                     value={e.id}
                     onSelect={() => {
-                      setSelectedEntryId(e.id);
-                      setSearchOpen(false);
-                      clearQuery();
+                      window.location.href = `/model/${e.id}`;
                     }}
                   >
                     <Badge variant="outline" className="text-[9px] mr-2 shrink-0">{e.category}</Badge>
@@ -1397,7 +1370,6 @@ export default function Home() {
 
   return (
     <TooltipProvider delayDuration={300}>
-      <JsonLd />
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
 
