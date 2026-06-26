@@ -96,6 +96,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
