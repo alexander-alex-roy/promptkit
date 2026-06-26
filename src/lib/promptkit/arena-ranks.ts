@@ -442,8 +442,6 @@ export function crossReferenceRankings(modelNames: string[]): { matched: string[
   return { matched, unmatched };
 }
 
-// ── Text-to-Video Arena ──────────────────────────────────────────
-
 const VIDEO_NAME_OVERRIDES: Record<string, string> = {
   // PromptKit model names → arena leaderboard names
   'Wan 2.7': 'wan2.7-t2v',
@@ -522,7 +520,6 @@ export function getVideoArenaRanking(modelName: string): ArenaRanking | null {
   return VIDEO_RANKING_BY_NORMALIZED.get(key) ?? null;
 }
 
-// ── Image-to-Video Arena ─────────────────────────────────────────
 // Source: https://chatbotarena.com/leaderboard (LMSYS Chatbot Arena)
 // Data snapshot: 2026-06-23
 //
@@ -701,8 +698,6 @@ export function getImageToVideoArenaRanking(modelName: string): ArenaRanking | n
   const key = normalize(modelName);
   return IMAGE2VIDEO_RANKING_BY_NORMALIZED.get(key) ?? null;
 }
-
-// ── Chatbot Arena (Text Models) ───────────────────────────────────
 
 const TEXT_RAW_RANKINGS: Array<Omit<ArenaRanking, 'organization' | 'license'>> = [
   { rank: 1,  rankSpread: '1 4',  modelName: 'claude-fable-5',                                          score: 1508, ci: 9,  votes: 4297,   preliminary: false },

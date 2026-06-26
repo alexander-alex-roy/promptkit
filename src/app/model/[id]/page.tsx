@@ -4,12 +4,10 @@ import Link from 'next/link';
 import { ALL_ENTRIES, getEntryById, getSourceQuality } from '@/lib/promptkit/system-prompts';
 import type { SystemPromptEntry } from '@/lib/promptkit/types';
 
-// ── Static params for static export ──────────────────────────────────────────
 export function generateStaticParams() {
   return ALL_ENTRIES.map((entry) => ({ id: entry.id }));
 }
 
-// ── Per-page metadata ────────────────────────────────────────────────────────
 export async function generateMetadata({
   params,
 }: {
@@ -42,7 +40,6 @@ export async function generateMetadata({
   };
 }
 
-// ── Source quality badge config ───────────────────────────────────────────────
 const QUALITY_CONFIG = {
   verified: { label: 'Verified', className: 'bg-emerald-500/10 text-emerald-500 border-emerald-500/20' },
   partial: { label: 'Partial', className: 'bg-amber-500/10 text-amber-500 border-amber-500/20' },
@@ -55,7 +52,6 @@ const CATEGORY_LABELS: Record<string, string> = {
   embedding: 'Embedding', moderation: 'Moderation', world: 'World',
 };
 
-// ── Page component ───────────────────────────────────────────────────────────
 export default async function ModelPage({
   params,
 }: {
@@ -69,7 +65,6 @@ export default async function ModelPage({
   const qc = QUALITY_CONFIG[quality];
   const categoryLabel = CATEGORY_LABELS[entry.category] ?? entry.category;
 
-  // JSON-LD structured data
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
