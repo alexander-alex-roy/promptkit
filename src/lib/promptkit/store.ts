@@ -10,7 +10,7 @@ export interface BookmarkItem {
   type: 'full' | 'short';
 }
 
-export type SortField = 'name' | 'provider' | 'quality' | 'date';
+export type SortField = 'name' | 'provider' | 'quality' | 'date' | 'ranking';
 export type SortOrder = 'asc' | 'desc';
 export type SourceQualityFilter = 'all' | 'verified' | 'partial' | 'limited';
 
@@ -79,9 +79,9 @@ export const useAppStore = create<AppState>()(
       sourceQualityFilter: 'all',
       setSourceQualityFilter: (q) => set({ sourceQualityFilter: q }),
 
-      sortBy: 'name',
+      sortBy: 'ranking',
       setSortBy: (f) => set({ sortBy: f }),
-      sortOrder: 'asc',
+      sortOrder: 'desc',
       setSortOrder: (o) => set({ sortOrder: o }),
 
       compareIds: [],

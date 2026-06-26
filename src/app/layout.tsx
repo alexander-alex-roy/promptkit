@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://promptkit.qzz.io"),
-  title: "PromptKit — System Prompt Library for 200+ AI Models",
+  title: "PromptKit — System Prompt Library for 400+ AI Models",
   description:
-    "Expert-crafted system prompts for 200+ AI models. Copy, paste, and get optimized prompts for ChatGPT, Claude, Gemini, Midjourney, and more. Based on official documentation.",
+    "Expert-crafted system prompts for 400+ AI models. Copy, paste, and get optimized prompts for ChatGPT, Claude, Gemini, Midjourney, and more. Based on official documentation.",
   keywords: [
     "AI system prompt",
     "Midjourney prompt rules",
@@ -63,20 +63,20 @@ export const metadata: Metadata = {
   },
   manifest: "/site.webmanifest",
   openGraph: {
-    title: "PromptKit — System Prompt Library for 200+ AI Models",
+    title: "PromptKit — System Prompt Library for 400+ AI Models",
     description:
-      "Expert-crafted system prompts for 200+ AI models. Based on official docs. Copy and paste into ChatGPT, Claude, or Gemini.",
+      "Expert-crafted system prompts for 400+ AI models. Based on official docs. Copy and paste into ChatGPT, Claude, or Gemini.",
     type: "website",
     siteName: "PromptKit",
     locale: "en_US",
     url: "https://promptkit.qzz.io",
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "PromptKit — System Prompt Library for 200+ AI Models" }],
+    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: "PromptKit — System Prompt Library for 400+ AI Models" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "PromptKit — System Prompt Library for 200+ AI Models",
+    title: "PromptKit — System Prompt Library for 400+ AI Models",
     description:
-      "Expert-crafted system prompts for 200+ AI models. Based on official docs.",
+      "Expert-crafted system prompts for 400+ AI models. Based on official docs.",
     images: ["/og-image.png"],
   },
   robots: {
@@ -116,7 +116,7 @@ export default function RootLayout({
                     priceCurrency: "USD",
                   },
                   featureList: [
-                    "200+ AI model system prompts",
+                    "400+ AI model system prompts",
                     "Official documentation sources",
                     "GPT-5.5, Claude Opus 4, Gemini 3.5, GLM-5.2, Sora 2 support",
                     "Midjourney, Flux 2, Kling 3, GPT Image 2, Qwen Image support",
@@ -128,7 +128,7 @@ export default function RootLayout({
                   "@type": "WebSite",
                   name: "PromptKit",
                   url: "https://promptkit.qzz.io",
-                  description: "System prompt library for 200+ AI models based on official documentation",
+                  description: "System prompt library for 400+ AI models based on official documentation",
                   potentialAction: {
                     "@type": "SearchAction",
                     target: {

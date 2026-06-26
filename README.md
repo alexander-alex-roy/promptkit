@@ -5,7 +5,7 @@
 <h1 align="center">PromptKit</h1>
 
 <p align="center">
-  <strong>Expert-crafted system prompts for 380+ AI models.</strong>
+  <strong>Expert-crafted system prompts for 400+ AI models.</strong>
   <br>
   Based on official docs, model cards, and whitepapers — never guess how to prompt again.
 </p>
@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/models-380%2B-blue" alt="380+ Models">
+  <img src="https://img.shields.io/badge/models-400%2B-blue" alt="400+ Models">
   <img src="https://img.shields.io/badge/providers-45%2B-amber" alt="45+ Providers">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
 </p>
@@ -43,12 +43,12 @@ That's it. No sign-up, no API key, no cost.
 | Category | Models | Providers |
 |----------|--------|-----------|
 | **Text** | 137 | OpenAI, Anthropic, Google, Meta, DeepSeek, Mistral, Cohere, xAI, Alibaba, Zhipu, ByteDance, Tencent, Moonshot, MiniMax, 01.AI, Xiaomi, Inception Labs, NVIDIA, StepFun, Kuaishou, Baidu, Adobe, Google DeepMind |
-| **Image** | 107 | Midjourney, Black Forest Labs, Stability AI, Adobe, Ideogram, Recraft, Reve AI, OpenAI, Google, Kuaishou, CagliostroLab, PixArt, ByteDance, Tencent, Alibaba, Sourceful, Runway, Community, xAI, Zhipu, Baidu |
-| **Video** | 54 | Sora, Kling, Runway, Pika, Luma, Genmo, Lightricks, Shengshu AI, MiniMax, StepFun, ByteDance, Google DeepMind, Alibaba, xAI, Adobe |
+| **Image** | 108 | Midjourney, Black Forest Labs, Stability AI, Adobe, Ideogram, Recraft, Reve AI, OpenAI, Google, Kuaishou, CagliostroLab, PixArt, ByteDance, Tencent, Alibaba, Sourceful, Runway, Community, xAI, Zhipu, Baidu |
+| **Video** | 55 | Sora, Kling, Runway, Pika, Luma, Genmo, Lightricks, Shengshu AI, MiniMax, StepFun, ByteDance, Google DeepMind, Alibaba, xAI, Adobe |
 | **Audio** | 22 | OpenAI, Google DeepMind, Stability AI, MiniMax, NVIDIA, StepFun, xAI, Xiaomi, Alibaba, Microsoft |
 | **Vision** | 37 | GPT-4o, Claude, Gemini, Qwen, InternVL, Meta Llama, Mistral, NVIDIA, OpenGVLab, StepFun, Baidu |
 | **Code** | 13 | Claude, GPT, DeepSeek Coder, Codestral, Yi-Coder, KwaiCoder, Mercury Coder |
-| **3D** | 15 | Tripo, Meshy, Stability AI, Tencent, TencentARC, Microsoft (TRELLIS) |
+| **3D** | 20 | Tripo, Meshy, Stability AI, Tencent, TencentARC, Microsoft (TRELLIS) |
 | **Character** | 8 | StoryDiffusion, PhotoMaker, IP-Adapter-FaceID |
 | **World** | 2 | Google DeepMind (Genie 2), Tripo (W1.0) |
 

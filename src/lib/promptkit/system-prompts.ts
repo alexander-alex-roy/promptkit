@@ -192,7 +192,7 @@ export function searchEntries(query: string): SystemPromptEntry[] {
   return result;
 }
 
-export type SortField = 'name' | 'provider' | 'quality' | 'date';
+export type SortField = 'name' | 'provider' | 'quality' | 'date' | 'ranking';
 export type SortOrder = 'asc' | 'desc';
 
 export function sortEntries(

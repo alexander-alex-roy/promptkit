@@ -288,6 +288,21 @@ function BrowseSkeleton() {
   return <div className="space-y-4"><div className="h-8 rounded-lg bg-muted/30 animate-pulse" /><div className="h-64 rounded-lg bg-muted/30 animate-pulse" /></div>;
 }
 
+/** Get arena rank number for an entry (Infinity if unranked). Lower = better. */
+function entryRank(entry: SystemPromptEntry): number {
+  const isVideo = entry.category === 'video';
+  const isImage = entry.category === 'image' || entry.category === 'design';
+  const isText = entry.category === 'text';
+  const ranking = isVideo
+    ? getVideoArenaRanking(entry.modelName) ?? getImageToVideoArenaRanking(entry.modelName)
+    : isImage
+    ? getArenaRanking(entry.modelName)
+    : isText
+    ? getTextArenaRanking(entry.modelName)
+    : null;
+  return ranking?.rank ?? Infinity;
+}
+
 function BrowseView() {
   const {
     categoryFilter, setCategoryFilter,
@@ -343,6 +358,16 @@ function BrowseView() {
       // Keep relevance order from search; don't re-sort
       return result.sort((a, b) => (searchedOrder.get(a.id) ?? 0) - (searchedOrder.get(b.id) ?? 0));
     }
+    if (sortBy === 'ranking') {
+      return [...result].sort((a, b) => {
+        const rankA = entryRank(a);
+        const rankB = entryRank(b);
+        if (rankA === rankB) return 0;
+        // desc = best rank first (lower rank number)
+        // asc = worst rank first (higher rank number)
+        return sortOrder === 'desc' ? rankA - rankB : rankB - rankA;
+      });
+    }
     return sortEntries(result, sortBy, sortOrder);
   }, [debouncedSearch, categoryFilter, ecosystemFilter, providerFilter, sourceQualityFilter, sortBy, sortOrder]);
 
@@ -379,7 +404,7 @@ function BrowseView() {
             Copy the expert-crafted system prompt for your target model. Paste it into ChatGPT, Claude, or any chatbot. Then ask it to generate prompts following those rules.
           </p>
           <div className="flex items-center justify-center gap-4 mt-3 text-xs text-muted-foreground">
-            <span className="flex items-center gap-1"><Zap className="h-3 w-3 text-amber-500" /> 380+ models</span>
+            <span className="flex items-center gap-1"><Zap className="h-3 w-3 text-amber-500" /> 400+ models</span>
             <span className="flex items-center gap-1"><ArrowLeft className="h-3 w-3 rotate-180" /> Paste in your chatbot</span>
             <span className="flex items-center gap-1"><Sparkles className="h-3 w-3 text-amber-500" /> Get optimized prompts</span>
           </div>
@@ -507,6 +532,7 @@ function BrowseView() {
               <SelectValue />
             </SelectTrigger>
             <SelectContent>
+              <SelectItem value="ranking-desc">Top Ranked</SelectItem>
               <SelectItem value="name-asc">Name A-Z</SelectItem>
               <SelectItem value="name-desc">Name Z-A</SelectItem>
               <SelectItem value="provider-asc">Provider A-Z</SelectItem>
@@ -583,6 +609,27 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
   const isComparing = useAppStore(s => s.compareIds.includes(entry.id));
   const bookmarked = useAppStore(s => hydrated && s.bookmarks.some(b => b.entryId === entry.id));
   const catConfig = CATEGORY_CONFIG[entry.category];
+  const quality = getEntryQuality(entry);
+  const qualityHoverBorder = quality === 'verified' ? 'hover:border-emerald-500/50'
+    : quality === 'partial' ? 'hover:border-amber-500/50'
+    : 'hover:border-red-500/50';
+
+  const rankings = useMemo(() => {
+    const result: { ranking: ArenaRanking; label: string }[] = [];
+    if (entry.category === 'video') {
+      const t2v = getVideoArenaRanking(entry.modelName);
+      const i2v = getImageToVideoArenaRanking(entry.modelName);
+      if (t2v) result.push({ ranking: t2v, label: 'T2V' });
+      if (i2v) result.push({ ranking: i2v, label: 'I2V' });
+    } else if (entry.category === 'image' || entry.category === 'design') {
+      const r = getArenaRanking(entry.modelName);
+      if (r) result.push({ ranking: r, label: 'T2I' });
+    } else if (entry.category === 'text') {
+      const r = getTextArenaRanking(entry.modelName);
+      if (r) result.push({ ranking: r, label: 'Chat' });
+    }
+    return result;
+  }, [entry.category, entry.modelName]);
 
   const highlight = useCallback((text: string) => {
     if (!query) return text;
@@ -591,7 +638,7 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
 
   return (
     <Card
-      className="group hover:border-amber-500/30 transition-all cursor-pointer"
+      className={cn("group transition-all cursor-pointer", qualityHoverBorder)}
       role="listitem"
     >
       <CardContent className="pt-5">
@@ -609,20 +656,28 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
                 {entry.provider}
               </span>
             </div>
-            <div className="flex gap-1 shrink-0 ml-2">
-              <Badge variant="outline" className="text-[9px] px-1.5 py-0 gap-0.5">
-                {catConfig.icon}
-                {entry.category.toUpperCase()}
+            <Badge variant="outline" className="text-[9px] px-1.5 py-0 gap-0.5 shrink-0 ml-2">
+              {catConfig.icon}
+              {entry.category.toUpperCase()}
+            </Badge>
+          </div>
+          <div className="flex flex-wrap gap-1 mb-3">
+            {rankings.map(({ ranking: r, label }) => (
+              <Badge key={label} variant="outline" className="text-[9px] px-1.5 py-0 gap-0.5 border-purple-500/30 text-purple-400">
+                <Trophy className="h-2.5 w-2.5" />
+                #{r.rank}
+                <span className="text-purple-400/60 ml-0.5">{label}</span>
+                {r.preliminary && <span className="text-amber-500 ml-0.5">*</span>}
               </Badge>
-              <Badge className={cn(
-                'text-[9px] px-1.5 py-0',
-                entry.ecosystem === 'chinese' ? 'bg-red-500/10 text-red-500 border-red-500/20' :
-                entry.ecosystem === 'open-weight' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
-                'bg-blue-500/10 text-blue-500 border-blue-500/20'
-              )} variant="outline">
-                {entry.ecosystem === 'chinese' ? 'CN' : entry.ecosystem === 'open-weight' ? 'Open' : 'Com'}
-              </Badge>
-            </div>
+            ))}
+            <Badge className={cn(
+              'text-[9px] px-1.5 py-0',
+              entry.ecosystem === 'chinese' ? 'bg-red-500/10 text-red-500 border-red-500/20' :
+              entry.ecosystem === 'open-weight' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
+              'bg-blue-500/10 text-blue-500 border-blue-500/20'
+            )} variant="outline">
+              {entry.ecosystem === 'chinese' ? 'CN' : entry.ecosystem === 'open-weight' ? 'Open' : 'Com'}
+            </Badge>
           </div>
           <p className="text-xs text-muted-foreground line-clamp-2 mb-3" dangerouslySetInnerHTML={{ __html: query ? highlight(entry.description) : entry.description }} />
 
@@ -1401,7 +1456,7 @@ export default function Home() {
         <Header />
 
         <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6" role="main">
-          {/* Keep BrowseView mounted but hidden to avoid remounting 380+ EntryCards on navigation — freeze fix */}
+          {/* Keep BrowseView mounted but hidden to avoid remounting 400+ EntryCards on navigation — freeze fix */}
           <div className={cn(activeView !== 'browse' && 'hidden')}>
             <Suspense fallback={<BrowseSkeleton />}>
               <BrowseView />
@@ -1422,6 +1477,10 @@ export default function Home() {
                 <span>{ALL_ENTRIES.length} system prompts</span>
                 <span className="opacity-50">&bull;</span>
                 <span>Based on official docs &amp; whitepapers</span>
+                <span className="opacity-50">&bull;</span>
+                <a href="https://github.com/1downy/promptkit" target="_blank" rel="noopener noreferrer" className="hover:text-amber-500 transition-colors inline-flex items-center gap-1">
+                  <Github className="h-3 w-3" /> Source
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <span className="hidden sm:inline-flex items-center gap-1">
