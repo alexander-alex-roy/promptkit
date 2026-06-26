@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { Suspense, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { useAppStore } from '@/lib/promptkit/store';
 
 function useHydrated() {
@@ -283,6 +284,10 @@ function Header() {
 }
 
 
+function BrowseSkeleton() {
+  return <div className="space-y-4"><div className="h-8 rounded-lg bg-muted/30 animate-pulse" /><div className="h-64 rounded-lg bg-muted/30 animate-pulse" /></div>;
+}
+
 function BrowseView() {
   const {
     categoryFilter, setCategoryFilter,
@@ -298,9 +303,16 @@ function BrowseView() {
   const [localSearch, setLocalSearch] = useState(searchQuery);
   const debouncedSearch = useDebounce(localSearch, 300);
 
+  const searchParams = useSearchParams();
+
   useEffect(() => {
     setSearchQuery(debouncedSearch);
   }, [debouncedSearch, setSearchQuery]);
+
+  useEffect(() => {
+    const provider = searchParams.get('provider');
+    if (provider) setProviderFilter(provider);
+  }, [searchParams, setProviderFilter]);
 
   const providers = UNIQUE_PROVIDERS;
   const categoryCounts = useMemo(() => {
@@ -426,14 +438,23 @@ function BrowseView() {
 
         {/* Search + Filter row */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <div className="flex-1">
+          <div className="relative flex-1">
             <Input
               placeholder="Search models, providers, categories..."
               value={localSearch}
               onChange={(e) => setLocalSearch(e.target.value)}
-              className="h-8 text-sm"
+              className="h-8 text-sm pr-8"
               aria-label="Search models"
             />
+            {localSearch && (
+              <button
+                onClick={() => setLocalSearch('')}
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Clear search"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            )}
           </div>
           <div className="flex gap-1 shrink-0 flex-wrap items-center" role="group" aria-label="Ecosystem filter">
             {ECOSYSTEMS.map((eco) => (
@@ -1382,7 +1403,9 @@ export default function Home() {
         <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 py-6" role="main">
           {/* Keep BrowseView mounted but hidden to avoid remounting 380+ EntryCards on navigation — freeze fix */}
           <div className={cn(activeView !== 'browse' && 'hidden')}>
-            <BrowseView />
+            <Suspense fallback={<BrowseSkeleton />}>
+              <BrowseView />
+            </Suspense>
           </div>
           {activeView === 'detail' && <DetailView />}
           {activeView === 'compare' && <CompareView />}

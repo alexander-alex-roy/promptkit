@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ALL_ENTRIES, getEntryById, getSourceQuality } from '@/lib/promptkit/system-prompts';
 import type { SystemPromptEntry } from '@/lib/promptkit/types';
+import { ModelPromptView } from '@/components/model-prompt-view';
 
 export function generateStaticParams() {
   return ALL_ENTRIES.map((entry) => ({ id: entry.id }));
@@ -126,7 +127,7 @@ export default async function ModelPage({
           <h1 className="text-3xl font-bold tracking-tight mb-2">{entry.modelName}</h1>
           <p className="text-muted-foreground mb-1">{entry.description}</p>
           <div className="flex items-center gap-3 text-xs text-muted-foreground mb-8">
-            <span>By {entry.provider}</span>
+            <span>By </span><Link href={`/?provider=${encodeURIComponent(entry.provider)}`} className="hover:text-amber-500 transition-colors">{entry.provider}</Link>
             <span>&bull;</span>
             <span>Version: {entry.version}</span>
             <span>&bull;</span>
@@ -163,9 +164,7 @@ export default async function ModelPage({
             <h2 id="system-prompt-heading" className="text-sm font-semibold mb-3 flex items-center gap-2">
               ✨ System Prompt
             </h2>
-            <pre className="text-sm whitespace-pre-wrap font-mono leading-relaxed bg-muted/30 rounded-xl p-5 border border-amber-500/20 overflow-x-auto">
-              {entry.systemPrompt}
-            </pre>
+            <ModelPromptView systemPrompt={entry.systemPrompt} shortVersion={entry.shortVersion} />
           </section>
 
           {/* Tips */}
