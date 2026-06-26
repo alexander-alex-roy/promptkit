@@ -3,6 +3,12 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Link from 'next/link';
 import { useAppStore } from '@/lib/promptkit/store';
+
+function useHydrated() {
+  const [hydrated, setHydrated] = useState(false);
+  useEffect(() => setHydrated(true), []);
+  return hydrated;
+}
 import {
   ALL_ENTRIES,
   getEntryById,
@@ -548,8 +554,9 @@ function BrowseView() {
 
 const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: SystemPromptEntry; query?: string }) {
   const { setSelectedEntryId, setProviderFilter, compareIds, addCompare, removeCompare, isBookmarked, addBookmark, removeBookmark } = useAppStore();
+  const hydrated = useHydrated();
   const isComparing = compareIds.includes(entry.id);
-  const bookmarked = isBookmarked(entry.id);
+  const bookmarked = hydrated && isBookmarked(entry.id);
   const catConfig = CATEGORY_CONFIG[entry.category];
 
   const highlight = useCallback((text: string) => {
@@ -558,58 +565,58 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
   }, [query]);
 
   return (
-    <Link href={`/model/${entry.id}`} className="block">
     <Card
       className="group hover:border-amber-500/30 transition-all cursor-pointer"
       role="listitem"
     >
       <CardContent className="pt-5">
-        <div className="flex items-start justify-between mb-3">
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2 mb-0.5">
-              <h3 className="font-semibold text-base truncate" dangerouslySetInnerHTML={{ __html: query ? highlight(entry.modelName) : entry.modelName }} />
-              <SourceQualityBadge entry={entry} />
+        <Link href={`/model/${entry.id}`} className="block">
+          <div className="flex items-start justify-between mb-3">
+            <div className="min-w-0 flex-1">
+              <div className="flex items-center gap-2 mb-0.5">
+                <h3 className="font-semibold text-base truncate" dangerouslySetInnerHTML={{ __html: query ? highlight(entry.modelName) : entry.modelName }} />
+                <SourceQualityBadge entry={entry} />
+              </div>
+              <span
+                className="text-xs text-muted-foreground hover:text-amber-500 transition-colors"
+                aria-label={`Filter by ${entry.provider}`}
+              >
+                {entry.provider}
+              </span>
             </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); setProviderFilter(entry.provider); }}
-              className="text-xs text-muted-foreground hover:text-amber-500 transition-colors"
-              aria-label={`Filter by ${entry.provider}`}
-            >
-              {entry.provider}
-            </button>
+            <div className="flex gap-1 shrink-0 ml-2">
+              <Badge variant="outline" className="text-[9px] px-1.5 py-0 gap-0.5">
+                {catConfig.icon}
+                {entry.category.toUpperCase()}
+              </Badge>
+              <Badge className={cn(
+                'text-[9px] px-1.5 py-0',
+                entry.ecosystem === 'chinese' ? 'bg-red-500/10 text-red-500 border-red-500/20' :
+                entry.ecosystem === 'open-weight' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
+                'bg-blue-500/10 text-blue-500 border-blue-500/20'
+              )} variant="outline">
+                {entry.ecosystem === 'chinese' ? 'CN' : entry.ecosystem === 'open-weight' ? 'Open' : 'Com'}
+              </Badge>
+            </div>
           </div>
-          <div className="flex gap-1 shrink-0 ml-2">
-            <Badge variant="outline" className="text-[9px] px-1.5 py-0 gap-0.5">
-              {catConfig.icon}
-              {entry.category.toUpperCase()}
-            </Badge>
-            <Badge className={cn(
-              'text-[9px] px-1.5 py-0',
-              entry.ecosystem === 'chinese' ? 'bg-red-500/10 text-red-500 border-red-500/20' :
-              entry.ecosystem === 'open-weight' ? 'bg-green-500/10 text-green-500 border-green-500/20' :
-              'bg-blue-500/10 text-blue-500 border-blue-500/20'
-            )} variant="outline">
-              {entry.ecosystem === 'chinese' ? 'CN' : entry.ecosystem === 'open-weight' ? 'Open' : 'Com'}
-            </Badge>
+          <p className="text-xs text-muted-foreground line-clamp-2 mb-3" dangerouslySetInnerHTML={{ __html: query ? highlight(entry.description) : entry.description }} />
+
+          {/* Short version preview — 3 lines */}
+          <div className="bg-muted/30 rounded-lg p-3 mb-3">
+            <pre className="text-[11px] font-mono line-clamp-3 whitespace-pre-wrap text-muted-foreground">
+              {entry.shortVersion}
+            </pre>
           </div>
-        </div>
-        <p className="text-xs text-muted-foreground line-clamp-2 mb-3" dangerouslySetInnerHTML={{ __html: query ? highlight(entry.description) : entry.description }} />
 
-        {/* Short version preview — 3 lines */}
-        <div className="bg-muted/30 rounded-lg p-3 mb-3">
-          <pre className="text-[11px] font-mono line-clamp-3 whitespace-pre-wrap text-muted-foreground">
-            {entry.shortVersion}
-          </pre>
-        </div>
-
-        {/* Sources summary */}
-        <div className="flex items-center gap-2 mb-3">
-          <FileText className="h-3 w-3 text-muted-foreground" />
-          <span className="text-[10px] text-muted-foreground">{entry.sources.length} source{entry.sources.length !== 1 ? 's' : ''}</span>
-          {entry.sources.slice(0, 2).map((s, i) => (
-            <Badge key={i} variant="secondary" className="text-[9px] px-1 py-0">{s.type}</Badge>
-          ))}
-        </div>
+          {/* Sources summary */}
+          <div className="flex items-center gap-2 mb-3">
+            <FileText className="h-3 w-3 text-muted-foreground" />
+            <span className="text-[10px] text-muted-foreground">{entry.sources.length} source{entry.sources.length !== 1 ? 's' : ''}</span>
+            {entry.sources.slice(0, 2).map((s, i) => (
+              <Badge key={i} variant="secondary" className="text-[9px] px-1 py-0">{s.type}</Badge>
+            ))}
+          </div>
+        </Link>
 
         {/* Actions */}
         <div className="flex items-center gap-1.5 pt-2 border-t border-border">
@@ -650,7 +657,6 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
         </div>
       </CardContent>
     </Card>
-    </Link>
   );
 });
 
@@ -1242,7 +1248,7 @@ function BookmarksView() {
               <div className="flex items-start justify-between mb-2">
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2 mb-0.5">
-                    <h3 className="font-semibold truncate">{entry!.modelName}</h3>
+                    <Link href={`/model/${entry!.id}`} className="font-semibold truncate hover:text-amber-500 transition-colors">{entry!.modelName}</Link>
                     <SourceQualityBadge entry={entry!} />
                   </div>
                   <p className="text-xs text-muted-foreground">{entry!.provider}</p>
