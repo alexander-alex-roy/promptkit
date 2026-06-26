@@ -33,14 +33,13 @@ export const ENTRIES_BY_CATEGORY: Record<ModelCategory, SystemPromptEntry[]> = {
   world: WORLD,
 };
 
+const ENTRY_BY_ID = new Map<string, SystemPromptEntry>(ALL_ENTRIES.map(e => [e.id, e]));
+
 export function getEntryById(id: string): SystemPromptEntry | undefined {
-  return ALL_ENTRIES.find(e => e.id === id);
+  return ENTRY_BY_ID.get(id);
 }
 
-export function getUniqueProviders(): string[] {
-  const set = new Set(ALL_ENTRIES.map(e => e.provider));
-  return Array.from(set).sort();
-}
+export const UNIQUE_PROVIDERS: string[] = Array.from(new Set(ALL_ENTRIES.map(e => e.provider))).sort();
 
 /**
  * Levenshtein edit distance between two strings.

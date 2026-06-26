@@ -14,7 +14,7 @@ import {
   getEntryById,
   searchEntries,
   ENTRIES_BY_CATEGORY,
-  getUniqueProviders,
+  UNIQUE_PROVIDERS,
   getSourceQuality as getEntryQuality,
   sortEntries,
   highlightMatches,
@@ -302,7 +302,7 @@ function BrowseView() {
     setSearchQuery(debouncedSearch);
   }, [debouncedSearch, setSearchQuery]);
 
-  const providers = useMemo(() => getUniqueProviders(), []);
+  const providers = UNIQUE_PROVIDERS;
   const categoryCounts = useMemo(() => {
     const counts: Record<string, number> = { all: ALL_ENTRIES.length };
     for (const cat of ALL_CATEGORIES) counts[cat] = ENTRIES_BY_CATEGORY[cat]?.length ?? 0;
@@ -553,10 +553,14 @@ function BrowseView() {
 
 
 const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: SystemPromptEntry; query?: string }) {
-  const { setSelectedEntryId, setProviderFilter, compareIds, addCompare, removeCompare, isBookmarked, addBookmark, removeBookmark } = useAppStore();
+  const setSelectedEntryId = useAppStore(s => s.setSelectedEntryId);
+  const addCompare = useAppStore(s => s.addCompare);
+  const removeCompare = useAppStore(s => s.removeCompare);
+  const addBookmark = useAppStore(s => s.addBookmark);
+  const removeBookmark = useAppStore(s => s.removeBookmark);
   const hydrated = useHydrated();
-  const isComparing = compareIds.includes(entry.id);
-  const bookmarked = hydrated && isBookmarked(entry.id);
+  const isComparing = useAppStore(s => s.compareIds.includes(entry.id));
+  const bookmarked = useAppStore(s => hydrated && s.bookmarks.some(b => b.entryId === entry.id));
   const catConfig = CATEGORY_CONFIG[entry.category];
 
   const highlight = useCallback((text: string) => {
@@ -621,38 +625,34 @@ const EntryCard = React.memo(function EntryCard({ entry, query }: { entry: Syste
         {/* Actions */}
         <div className="flex items-center gap-1.5 pt-2 border-t border-border">
           <CopyButton text={entry.systemPrompt} label="Copy" className="flex-1 h-7 text-xs" />
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={cn('h-7 w-7 p-0', bookmarked ? 'text-amber-500' : '')}
-                  onClick={(e) => { e.stopPropagation(); if (bookmarked) { removeBookmark(entry.id); } else { addBookmark(entry.id, 'full'); } }}
-                  aria-label={bookmarked ? 'Remove bookmark' : 'Bookmark this model'}
-                >
-                  {bookmarked ? <BookmarkCheck className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{bookmarked ? 'Remove bookmark' : 'Bookmark'}</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <TooltipProvider>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className={cn('h-7 w-7 p-0', isComparing ? 'text-blue-500' : '')}
-                  onClick={(e) => { e.stopPropagation(); if (isComparing) { removeCompare(entry.id); } else { addCompare(entry.id); } }}
-                  aria-label={isComparing ? 'Remove from compare' : 'Add to compare'}
-                >
-                  <GitCompare className="h-3.5 w-3.5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>{isComparing ? 'Remove from compare' : 'Add to compare'}</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className={cn('h-7 w-7 p-0', bookmarked ? 'text-amber-500' : '')}
+                onClick={(e) => { e.stopPropagation(); if (bookmarked) { removeBookmark(entry.id); } else { addBookmark(entry.id, 'full'); } }}
+                aria-label={bookmarked ? 'Remove bookmark' : 'Bookmark this model'}
+              >
+                {bookmarked ? <BookmarkCheck className="h-3.5 w-3.5" /> : <Bookmark className="h-3.5 w-3.5" />}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{bookmarked ? 'Remove bookmark' : 'Bookmark'}</TooltipContent>
+          </Tooltip>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="ghost"
+                size="sm"
+                className={cn('h-7 w-7 p-0', isComparing ? 'text-blue-500' : '')}
+                onClick={(e) => { e.stopPropagation(); if (isComparing) { removeCompare(entry.id); } else { addCompare(entry.id); } }}
+                aria-label={isComparing ? 'Remove from compare' : 'Add to compare'}
+              >
+                <GitCompare className="h-3.5 w-3.5" />
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>{isComparing ? 'Remove from compare' : 'Add to compare'}</TooltipContent>
+          </Tooltip>
           <ChevronRight className="h-3.5 w-3.5 text-muted-foreground ml-auto" />
         </div>
       </CardContent>
